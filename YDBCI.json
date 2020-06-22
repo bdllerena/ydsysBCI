@@ -1,0 +1,3761 @@
+[
+    {
+        "id": "15d07d93.69adea",
+        "type": "tab",
+        "label": "Tesis",
+        "disabled": true,
+        "info": ""
+    },
+    {
+        "id": "4cddb9b4.960a98",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/pacientes",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 360,
+        "wires": [
+            [
+                "a561bea.a3a79c"
+            ]
+        ]
+    },
+    {
+        "id": "a561bea.a3a79c",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes GET",
+        "func": "msg.topic=\"SELECT * FROM paciente\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "d455c721.f6b908"
+            ]
+        ]
+    },
+    {
+        "id": "d455c721.f6b908",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 360,
+        "wires": [
+            [
+                "3e269d6b.73a18a"
+            ]
+        ]
+    },
+    {
+        "id": "3e269d6b.73a18a",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d94ee5fe.367718",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "pacientes",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "8a9a4915.e228d"
+            ]
+        ]
+    },
+    {
+        "id": "56dff385.cf91dc",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1070,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "813de7b6.19f37",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/pacientes/update",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 440,
+        "wires": [
+            [
+                "6649e5a1.812ea4"
+            ]
+        ]
+    },
+    {
+        "id": "6649e5a1.812ea4",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes UPDATE",
+        "func": "msg.topic=\"UPDATE paciente SET paciente_nombre='\" + msg.payload.paciente_nombre + \"', paciente_edad='\" + msg.payload.paciente_edad + \"', paciente_genero='\" + msg.payload.paciente_genero + \"', paciente_identidad='\" + msg.payload.paciente_identidad + \"' WHERE paciente_id='\" + msg.payload.paciente_id + \"'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 440,
+        "wires": [
+            [
+                "af1af935.5f7f"
+            ]
+        ]
+    },
+    {
+        "id": "3f04b615.f233aa",
+        "type": "json",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 750,
+        "y": 280,
+        "wires": [
+            [
+                "e98e9ac8.fca38"
+            ]
+        ]
+    },
+    {
+        "id": "8a9a4915.e228d",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes query",
+        "func": "msg.topic=\"SELECT * FROM paciente\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "55f1fa4e.7fe994"
+            ]
+        ]
+    },
+    {
+        "id": "55f1fa4e.7fe994",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "3f04b615.f233aa"
+            ]
+        ]
+    },
+    {
+        "id": "432184d6.c7c81c",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "/api/pacientes/delete",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 520,
+        "wires": [
+            [
+                "48755d13.2f696c"
+            ]
+        ]
+    },
+    {
+        "id": "48755d13.2f696c",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes DELETE",
+        "func": "msg.topic=\"DELETE FROM paciente WHERE paciente_id='\" + msg.payload.paciente_id + \"'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 520,
+        "wires": [
+            [
+                "d3bbfb78.8e046"
+            ]
+        ]
+    },
+    {
+        "id": "af1af935.5f7f",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 440,
+        "wires": [
+            [
+                "783644ea.4e4bec"
+            ]
+        ]
+    },
+    {
+        "id": "e1558132.7d4748",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "d3bbfb78.8e046",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 520,
+        "wires": [
+            [
+                "8ccffbbf.c0fbd8"
+            ]
+        ]
+    },
+    {
+        "id": "8ccffbbf.c0fbd8",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "f8a4d7f7.918d6",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/pacientes",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 600,
+        "wires": [
+            [
+                "8b52ec63.e0b5d"
+            ]
+        ]
+    },
+    {
+        "id": "8b52ec63.e0b5d",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes POST",
+        "func": "nombre = msg.payload.paciente_nombre\nedad = msg.payload.paciente_edad\ngenero=msg.payload.paciente_genero\nidentidad=msg.payload.paciente_identidad\nmsg.topic = \"INSERT INTO paciente (`paciente_nombre`,`paciente_edad`,`paciente_genero`,`paciente_identidad`) VALUES ('\"+ nombre +\"',\"+ edad +\",'\"+ genero +\"','\"+ identidad +\"');\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 600,
+        "wires": [
+            [
+                "8f36547f.56d808"
+            ]
+        ]
+    },
+    {
+        "id": "8f36547f.56d808",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 600,
+        "wires": [
+            [
+                "e451e972.91ce58"
+            ]
+        ]
+    },
+    {
+        "id": "c5bde7dd.7551a",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "783644ea.4e4bec",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "UPDATE response",
+        "func": "msg.payload=msg.result;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 440,
+        "wires": [
+            [
+                "e1558132.7d4748"
+            ]
+        ]
+    },
+    {
+        "id": "e451e972.91ce58",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST response",
+        "func": "msg.payload=msg.result;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 600,
+        "wires": [
+            [
+                "c5bde7dd.7551a"
+            ]
+        ]
+    },
+    {
+        "id": "f3103a1c.cc5ba8",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "CRUD REST Pacientes",
+        "info": "",
+        "x": 120,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5c85a0b1.95d7d",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "GET Pacientes",
+        "info": "",
+        "x": 100,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "78d3de1f.aabe58",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "UPDATE Pacientes",
+        "info": "",
+        "x": 110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "72c4a99f.2b1268",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "DELETE Pacientes",
+        "info": "",
+        "x": 110,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "b9b9342.83f3148",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "POST Pacientes",
+        "info": "",
+        "x": 100,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e98e9ac8.fca38",
+        "type": "template",
+        "z": "15d07d93.69adea",
+        "name": "Paciente HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>YDSYS Pacientes</title>\n  <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css\" />\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\n    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css\" />\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css\" />\n    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js\"></script>\n    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js\"></script>\n    <script type=\"text/javascript\">\n        $(function() {\n            $(\"#jsgrid\").jsGrid({\n                width: \"98%\",\n                inserting: true,\n                editing: true,\n                sorting: true,\n                paging: true,\n                filtering: true,\n                inserting: true,\n                autoload: true,\n                pageSize: 15,\n                pageButtonCount: 5,\n                autoload: true,\n                deleteConfirm: function(item) {\n                    return \"El paciente \\\"\" + item.paciente_nombre + \"\\\" va a ser eliminado del registro\";\n                },\n                fields: [\n                    {\n                    name: \"paciente_id\",\n                    type: \"hidden\",\n                    css: 'hide'\n                    },\n                    {\n                    title: \"Nombre y Apellido\",\n                    name: \"paciente_nombre\",\n                    type: \"text\",\n                    width: 50,\n                    validate: \"required\"\n                    }, \n\t\t\t\t\t{\n                    title: \"Edad\",\n                    name: \"paciente_edad\",\n                    type: \"number\",\n                    width: 25,\n                    validate: { validator: \"range\", param: [10, 100] } \n                    }, \n\t\t\t\t\t{\n                    title: \"Género\",\n                    name: \"paciente_genero\",\n                    width: 50,\n                    type: \"select\",\n                    items: [\n                         { Name: \"\", Id: \"-\" },\n                         { Name: \"Masculino\", Id: \"M\" },\n                         { Name: \"Femenino\", Id: \"F\" },\n                         { Name: \"Otro\", Id: \"O\" }\n                    ],\n                    valueField: \"Id\",\n                    textField: \"Name\",\n                     validate: { message: \"Género debe ser especificado\", validator: function(value) { return value != \"-\"; } }\n                    }, \n\t\t\t\t\t{\n                    title: \"Identidad\",\n                    name: \"paciente_identidad\",\n                    type: \"text\",\n                    width: 50,\n                    validate: { validator: \"rangeLength\", param: [9, 10] }\n                    }, \n\t\t\t\t\t{\n                    type: \"control\"\n                    }],\n\n                controller: \n                                \n                {\n                        loadData: function(filter) {\n                          return $.ajax({\n                            url: \"/api/pacientes\",\n                            dataType: \"json\"\n                          });\n                        },\n\n                    insertItem: function(item) {\n                        var d = $.Deferred();\n                        $.ajax({\n                            type: \"POST\",\n                            url: \"/api/pacientes\",\n                            data: item\n                        }).done(function(insertItemReturnedFromServer) {\n                            d.resolve(insertItemReturnedFromServer); \n                            $(\"#jsgrid\").jsGrid(\"loadData\");\n                        });\n                        return d.promise();\n                    },\n                    updateItem: function(item) {\n                        var d = $.Deferred();\n                        $.ajax({\n                            type: \"PUT\",\n                            url: \"/api/pacientes/update\",\n                            data: item\n                        }).done(function(updatedItemReturnedFromServer) {\n                            d.resolve(updatedItemReturnedFromServer); \n                        });\n                        return d.promise();\n                    },\n                    /*updateItem: function(item) {\n                        return $.ajax({\n                            type: \"PUT\",\n                            url: \"/api/pacientes/update\",\n                            data: item\n                        });\n                    },*/\n                    deleteItem: function(item) {\n                        return $.ajax({\n                            type: \"DELETE\",\n                            url: \"/api/pacientes/delete\",\n                            data: item\n                        });\n                    }\n                }\n            });\n           // setInterval(function(){$(\"#jsgrid\").jsGrid(\"loadData\");}, 5000);\n        });\n    </script>\n<style>\n    .form-control-valid{}\n@charset \"UTF-8\";\n*, *:before, *:after {box-sizing: border-box;}\n\n:root {\n  --textcolor:black;\n  --accentcolor:#333333;\n  --lightaccentcolor:#9df;\n  --reversecolor:#fff;\n}\nhtml {\n  font-size:16px;\n  font-family:Trebuchet,sans-serif;\n}\nbody {\n  background:var(--accentcolor);\n  color:var(--reversecolor);\n  margin:0;padding:0;\n  line-height:1.5;\n}\nstrong, b {font-weight:bold;}\n#wrapper {\n  margin:0 auto;padding:1.2rem;\n  width:100%;height:auto;\n  min-width:320px;max-width:1040px;\n  background:var(--reversecolor);\n  color:var(--textcolor);\n  text-align:left;\n  border:2px solid var(--accentcolor);\n  border-radius:0 0 16px 16px;\n  box-shadow:4px 4px 16px #333;\n}\nh1, h2 {\n  color:var(--accentcolor);\n  text-align:left;\n}\nh1 {font-size:4rem;margin:0;}\nh2 {font-size:1.5rem;margin:0 0 0 0;}\np {font-size:1rem;margin:1rem 0 1rem 0;}\na:link, a:visited {color:var(--accentcolor);}\na:hover {text-decoration:none;}\n\n#rateFld {font-size:1.2rem;width:4rem;text-align:center;padding:0;margin:0 0 0 4px;}\n#txtFld {width:100%;height:4.2rem;font-size:1.8rem;font-family:inherit;}\nbutton {\n  -webkit-appearance:none;\n  font-size:1.4rem;\n  font-weight:normal;\n  background:var(--lightaccentcolor);\n  border-radius:12px;\n  border:2px solid var(--accentcolor);\n  color:var(--textcolor);\n  padding:0.3rem 0.5rem 0.3rem 0.5rem;\n  cursor:pointer;\n  margin:10px 20px 10px 20px;\n}\nbutton:hover {\n  color:var(--reversecolor);\n  background:var(--accentcolor);\n}\nbutton:disabled, select:disabled {\n  cursor:not-allowed;\n  opacity:0.3;\n}\nselect {\n  background:var(--lightaccentcolor);\n  color:var(--textcolor);\n  width:auto;\n  font-size:inherit;\n  font-weight:normal;\n  text-align:center;\n  height:auto;\n  border-radius:8px;\n  margin:10px 0;\n}\n.uiunit {display:inline-block;margin:1rem;text-align:left;}\n\n#warning {color:red;font-size:1.4rem;display:none;}\n</style>\n</head>\n<body>\n    <nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n   <a  class=\"navbar-brand\"  href=\"/ui\" target=\"_top\">YDSYS</a> \n    </div>\n    <ul class=\"nav navbar-nav\">\n      <li class=\"active\"><a href=\"/pacientes\" target=\"_self\">Pacientes</a></li>\n      <li><a href=\"/musica\" target=\"_self\">Música</a></li>\n      <li><a href=\"https://forms.gle/YpkgNWMas1WLcNHn6\" target=\"_self\">Estresores</a></li>\n    </ul>\n  </div>\n</nav>\n        <div id=\"wrapper\">\n        <center><h3>Lista de pacientes</h3></center>\n        <section class=\"row\">\n        <div class=\"col-md-6\"></div>\n        <div class=\"col-md-6\" id=\"jsgrid\">\n        </div>\n        </section>\n              </div>\n                \n</body>\n</html>\n",
+        "output": "str",
+        "x": 920,
+        "y": 280,
+        "wires": [
+            [
+                "56dff385.cf91dc"
+            ]
+        ],
+        "info": "Utiliza jsgrid para manejar las operaciones de crud en una tabla, utiliza promesas para volver a cargar la tabla (loadData), durante el insert para así obtener el id dado que es un autoincremental en la base de datos."
+    },
+    {
+        "id": "7db32e54.35868",
+        "type": "ui_template",
+        "z": "15d07d93.69adea",
+        "group": "839181ae.90b5f",
+        "name": "Menú",
+        "order": 1,
+        "width": 26,
+        "height": 13,
+        "format": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>YDSYS Menú</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<style>\n* {\n    padding: 0;\n    margin: 0;\n}\nbody {\n    background: #226699;\n}\n.mr20 {\n  margin-right: 80px;\n}\n.container {\n    overflow: hidden;\n    width: 1080px;\n    padding: 40px 0;\n    margin: 0 auto;\n}\n.box {\n    cursor: pointer;\n    display: block;\n    float: left;\n    width: 200px;\n    margin-bottom: 50px;\n}\n.box .title {\n    margin-bottom: 20px;\n    font-family: Arial;\n    font-size: 20px;\n    font-weight: bold;\n    line-height: 20px;\n    color: white;\n    text-align: center;\n}\n.box .svg {\n    width: 180px;\n    height: 180px;\n    border-radius: 100%;\n    margin: 0 10px;\n    background: #FFF;\n    box-shadow: 0 5px 5px #999;\n    transition: all 0.2s linear;\n}\n.box:hover .svg {\n    box-shadow: 0 5px 5px #666;\n}\n.svg g {\n    transform-origin: 90px 90px;\n    transition: all 0.2s linear;\n}\n.line {\n    clear: both;\n    width: 100%;\n    height: 4px;\n    margin-bottom: 20px;\n    background: #CCC4B0;\n}\n/*Medical Square css begin*/\n#svg-medical-square .cls-1 {\n    fill: none;\n    stroke: #bcbec0;\n    stroke-miterlimit: 10;\n    stroke-width: 2px;\n}\n#svg-medical-square .cls-2 {\n    fill: #bcbec0;\n}\n#svg-medical-square .cls-3 {\n    fill: #414141;\n}\n#svg-medical-square .cls-4 {\n    fill: #c4c4c4;\n}\n#svg-medical-square .cls-5 {\n    fill: #d42d27;\n}\n#svg-medical-square .cls-6 {\n    fill: #f5f5f5;\n}\n#svg-medical-square-g-01 {\n    transform: rotate(30deg);\n}\n.svg:hover #svg-medical-square-g-01 {\n    transform: rotate(120deg);\n}\n/*Medical Square css end*/\n/*Articles css begin*/\n#svg-articles .cls-1 {\n    fill: #fbca62;\n}\n#svg-articles .cls-2 {\n    fill: #ededed;\n}\n#svg-articles .cls-3 {\n    fill: #dcdbdb;\n}\n#svg-articles .cls-4 {\n    fill: #414141;\n}\n#svg-articles .cls-5 {\n    fill: #d1d3d4;\n}\n#svg-articles .cls-6 {\n    fill: #fff;\n}\n#svg-articles .cls-7 {\n    fill: #f36e41;\n}\n#svg-articles .cls-8 {\n    fill: #e6e5e5;\n}\n#svg-articles .cls-10,\n#svg-articles .cls-9 {\n    fill: none;\n    stroke-miterlimit: 10;\n}\n#svg-articles .cls-9 {\n    stroke: #a7a9ac;\n}\n#svg-articles .cls-10 {\n    stroke: #9cceee;\n}\n#svg-articles .cls-11 {\n    fill: #5eb8e8;\n}\n#svg-articles-g-02 {\n    transform: translateY(33px);\n}\n.svg:hover #svg-articles-g-02 {\n    transform: translateY(-33px);\n}\n/*Articles css end*/\n/*Slide css begin*/\n#svg-slide .cls-1 {\n    fill: #fff;\n    stroke: #c4c4c3;\n    stroke-width: 2px;\n}\n#svg-slide .cls-2 {\n    fill: #263f6a;\n}\n#svg-slide .cls-3 {\n    fill: #414141;\n}\n#svg-slide .cls-4 {\n    fill: #546778;\n}\n#svg-slide .cls-5 {\n    fill: #f26a50;\n}\n#svg-slide .cls-6 {\n    fill: #9cceee;\n}\n#svg-slide .cls-7 {\n    fill: #f79d87;\n}\n#svg-slide-g-01 {\n    transform: scaleY(1);\n}\n#svg-slide-g-02 {\n    transform: translateY(0);\n}\n#svg-slide-g-03 {\n    transform: translateY(0);\n}\n#svg-slide-g-04 {\n    opacity: 1;\n}\n#svg-slide-g-05 {\n    transform: scale(0.6);\n}\n#svg-slide-g-06 {\n    transform: translateY(0);\n}\n.svg:hover #svg-slide-g-01 {\n    transform: scaleY(1.4);\n}\n.svg:hover #svg-slide-g-02 {\n    transform: translateY(-11px);\n}\n.svg:hover #svg-slide-g-03 {\n    transform: translateY(15px);\n}\n.svg:hover #svg-slide-g-04 {\n    opacity: 0;\n}\n.svg:hover #svg-slide-g-05 {\n    transform: scale(1);\n}\n.svg:hover #svg-slide-g-06 {\n    transform: translateY(15px);\n}\n/*Slide css end*/\n/*FAQ css begin*/\n#svg-faq .cls-1 {\n    fill: #263f6a;\n}\n#svg-faq .cls-2 {\n    fill: #cccbca;\n}\n#svg-faq .cls-3 {\n    fill: #fff;\n    stroke: #c4c4c3;\n    stroke-miterlimit: 10;\n    stroke-width: 2px;\n}\n#svg-faq .cls-4 {\n    fill: #7d605b;\n}\n#svg-faq .cls-5 {\n    fill: #f26a50;\n}\n#svg-faq-g-01 {\n    transform: scale(1) translateY(0);\n}\n#svg-faq-g-02 {\n    transform: scale(1) translateX(-5px);\n}\n#svg-faq-g-03 {\n    transform: scale(1);\n}\n.svg:hover #svg-faq-g-01 {\n    transform: scale(0.8) translateY(30px);\n}\n.svg:hover #svg-faq-g-02 {\n    transform: scale(1.3) translateX(3px);\n}\n.svg:hover #svg-faq-g-03 {\n    transform: scale(1.3);\n}\n/*FAQ css end*/\n/*Guideline css begin*/\n#svg-guideline .st0 {\n    fill: none;\n    stroke: #F26A50;\n    stroke-width: 8;\n    stroke-miterlimit: 10;\n}\n#svg-guideline .st1 {\n    fill: none;\n    stroke: #C4C4C3;\n    stroke-width: 4;\n    stroke-miterlimit: 10;\n}\n#svg-guideline .st2 {\n    fill: #9CCEEE;\n}\n#svg-guideline .st3 {\n    fill: #BDB4AE;\n}\n#svg-guideline .st4 {\n    fill: #213646;\n}\n#svg-guideline .st5 {\n    fill: #263F6A;\n}\n#svg-guideline-g-01 {\n    transform: scale(0.5) translateX(-60px);\n}\n#svg-guideline-g-02 {\n    opacity: 1;\n}\n.svg:hover #svg-guideline-g-01 {\n    transform: scale(1) translateX(0);\n}\n.svg:hover #svg-guideline-g-02 {\n    opacity: 0;\n}\n/*Guideline css end*/\n/*Lilly Product css begin*/\n#svg-lilly-product .cls-1 {\n    fill: #c4c4c4;\n}\n#svg-lilly-product .cls-2 {\n    fill: #d42d27;\n}\n#svg-lilly-product .cls-3 {\n    fill: #fff;\n}\n#svg-lilly-product .cls-4 {\n    fill: #4d4d4e;\n}\n#svg-lilly-product .cls-5 {\n    fill: #7d605b;\n}\n#svg-lilly-product .cls-6 {\n    fill: #4d4d4d;\n}\n#svg-lilly-product-g-01 {\n    transform: translateY(-15px);\n}\n#svg-lilly-product-g-02 {\n    transform: translate(0, -15px) rotate(0);\n}\n#svg-lilly-product-g-03 {\n    opacity: 0;\n    transform: translateX(0) scale(0);\n}\n.svg:hover #svg-lilly-product-g-01 {\n    transform: translateY(0px);\n}\n.svg:hover #svg-lilly-product-g-02 {\n    transform: translate(-5px, -5px) rotate(-45deg);\n}\n.svg:hover #svg-lilly-product-g-03 {\n    opacity: 1;\n    transform: translateX(20px) scale(1);\n}\n/*Lilly Product css end*/\n/*Corporate Site css begin*/\n#svg-corporate-site .cls-1 {\n    fill: #dcdbdb;\n}\n#svg-corporate-site .cls-2 {\n    fill: #9cceee;\n}\n#svg-corporate-site .cls-3,\n#svg-corporate-site .cls-4 {\n    fill: none;\n    stroke-miterlimit: 10;\n    stroke-width: 4px;\n}\n#svg-corporate-site .cls-3 {\n    stroke: #9cceee;\n}\n#svg-corporate-site .cls-4 {\n    stroke: #f26a50;\n}\n#svg-corporate-site-g-01 {\n    transform: translate(0, 0) rotate(0) scale(1);\n}\n#svg-corporate-site-g-02 {\n    transform: translate(0, 0) rotate(0);\n    opacity: 1;\n}\n#svg-corporate-site-g-03 {\n    transform: translate(0, 0) rotate(0);\n    opacity: 0;\n}\n.svg:hover #svg-corporate-site-g-01 {\n    transform: translate(-5px, 20px) rotate(-30deg) scale(0.8);\n}\n.svg:hover #svg-corporate-site-g-02 {\n    transform: translate(-5px, 15px) rotate(-20deg);\n    opacity: 0;\n}\n.svg:hover #svg-corporate-site-g-03 {\n    transform: translate(-5px, 15px) rotate(-20deg);\n    opacity: 1;\n}\n/*Corporate Site css end*/\n/*Product Information css begin*/\n#svg-product-information .cls-1 {\n    fill: #f26a50;\n}\n#svg-product-information .cls-2 {\n    fill: #c4c4c4;\n}\n#svg-product-information .cls-3 {\n    fill: #9cceee;\n}\n#svg-product-information .cls-4 {\n    fill: #7d605b;\n}\n#svg-product-information .cls-5 {\n    fill: #fff;\n}\n#svg-product-information .cls-6 {\n    fill: #d42d27;\n    transition: all 0.2s linear;\n}\n#svg-product-information-g-01 {\n    transform: translateY(0) scale(1);\n}\n#svg-product-information-g-02 {\n    transform: translateY(-5px) scale(0.8);\n}\n#svg-product-information-g-02 .cls-6 {\n    fill: #653E2D;\n}\n.svg:hover #svg-product-information-g-01 {\n    transform: translateY(10px) scale(0.9);\n}\n.svg:hover #svg-product-information-g-02 {\n    transform: translateY(0) scale(1);\n}\n.svg:hover #svg-product-information-g-02 .cls-6 {\n    fill: #d42d27;\n}\n/*Product Information css end*/\n/*Digital Tool css bgin*/\n#svg-digital-tool .cls-1 {\n    fill: #ffd99c;\n}\n#svg-digital-tool .cls-2 {\n    fill: #555;\n}\n#svg-digital-tool .cls-3 {\n    fill: #414141;\n}\n#svg-digital-tool .cls-4 {\n    fill: #5eb8e8;\n}\n#svg-digital-tool .cls-5 {\n    fill: #fff;\n}\n#svg-digital-tool-g-01 .cls-4 {\n    fill: #F66D43;\n    transition: all 0.2s linear;\n}\n#svg-digital-tool-g-02 {\n    opacity: 1;\n}\n#svg-digital-tool-g-03 {\n    opacity: 0;\n}\n#svg-digital-tool-g-04 {\n    transform: translate(0, 0) rotate(0);\n}\n.svg:hover #svg-digital-tool-g-01 .cls-4 {\n    fill: #5eb8e8;\n}\n.svg:hover #svg-digital-tool-g-02 {\n    opacity: 0;\n}\n.svg:hover #svg-digital-tool-g-03 {\n    opacity: 1;\n}\n.svg:hover #svg-digital-tool-g-04 {\n    transform: translate(-8px, 15px) rotate(-30deg);\n}\n/*Digital Tool css end*/\n</style>\n</head>\n<body>\n  <div class=\"container\">\n      <center><div class=\"svg\"><img src=\"https://i.imgur.com/WYYbdZ3.png\"></div></center>\n      <div class=\"line\"></div>\n      <div class=\"line\"></div>\n    <div class=\"box mr20\">\n        <div class=\"title\">Gestión</div>\n      <md-button style=\"background-color: transparent\" ng-click=\"send({payload: 1})\">\n        <div class=\"svg\">\n            <svg id=\"svg-medical-square\" width=\"180\" height=\"180\">\n                <title>Pacientes</title>\n                <g id=\"svg-medical-square-g-01\">\n                    <polygon class=\"cls-1\" points=\"60.22 140.82 31.02 90.24 60.22 39.67 118.62 39.67 147.81 90.24 118.62 140.82 60.22 140.82\" />\n                    <path class=\"cls-2\" d=\"M116.62,43.14v94.22L35,90.24l81.59-47.11m2-3.46L31,90.24l87.59,50.57V39.67h0Z\" />\n                    <path class=\"cls-2\" d=\"M62.22,43.14l81.59,47.11L62.22,137.35V43.14m-2-3.46V140.82l87.59-50.57L60.22,39.67h0Z\" />\n                    <line class=\"cls-1\" x1=\"118.62\" y1=\"39.67\" x2=\"61.12\" y2=\"139.28\" />\n                    <line class=\"cls-1\" x1=\"60.22\" y1=\"39.67\" x2=\"118.62\" y2=\"140.82\" />\n                    <line class=\"cls-1\" x1=\"31.46\" y1=\"90.83\" x2=\"147.81\" y2=\"90.24\" />\n                    <circle class=\"cls-3\" cx=\"146.44\" cy=\"90\" r=\"8\" />\n                    <circle class=\"cls-4\" cx=\"31.46\" cy=\"90.49\" r=\"8\" />\n                    <circle class=\"cls-3\" cx=\"61.12\" cy=\"39.67\" r=\"8\" />\n                    <circle class=\"cls-4\" cx=\"118.62\" cy=\"39.67\" r=\"8\" />\n                    <circle class=\"cls-4\" cx=\"118.62\" cy=\"140.82\" r=\"8\" />\n                    <circle class=\"cls-3\" cx=\"60.22\" cy=\"140.82\" r=\"8\" />\n                </g>\n                <g id=\"svg-medical-square-g-02\">\n                    <circle class=\"cls-5\" cx=\"89.42\" cy=\"90.24\" r=\"28.67\" />\n                    <path class=\"cls-6\" d=\"M102.42,98.61L99.51,97v2.48a0.65,0.65,0,0,1,0,.07c2.47,0.38,3.32,3.15,3.37,4.68l-1.4,0c0-.14-0.21-3.46-2.64-3.4s-2.49,3.23-2.48,3.37l-1.4,0c0-1.5.66-4.21,3.19-4.69a0.66,0.66,0,0,1,0-.1V96.3l-4-2.13V91.42a12,12,0,0,0,2.79-4.08,0.71,0.71,0,0,0,.15.08c0.75,0.23,1.75-.84,2.22-2.4s0.25-3-.5-3.23a0.83,0.83,0,0,0-.57.05h0l0,0a5.26,5.26,0,0,0,0-.53c0,0.05,0,.1,0,0.16v0c0-.19,0-0.38,0-0.57,0-6.35-3.71-10.15-8.28-10.15s-8.28,3.8-8.28,10.15c0,0.19,0,.38,0,0.57,0,0,0,0,0,0s0-.1,0-0.15c0,0.17,0,.34,0,0.52l0,0h0a0.83,0.83,0,0,0-.57-0.05c-0.75.23-1,1.68-.5,3.23s1.47,2.63,2.22,2.4A0.71,0.71,0,0,0,83,87.33a12,12,0,0,0,2.79,4.08V94l-1.72,1.08L81,96.78V101a2.1,2.1,0,1,1-1.4,0V97.53l-2,1.08c-3.24,1.8-5.87,3.58-5.87,5.08v2.92a0.92,0.92,0,0,0,.92.92h34.76a0.92,0.92,0,0,0,.92-0.92v-2.92C108.29,102.19,105.66,100.41,102.42,98.61Z\" />\n                </g>\n            </svg>\n        </div>\n        </md-button>\n    </div>\n    <div class=\"box mr20\">\n        <div class=\"title\">Monitoreo</div>\n      <md-button style=\"background-color: transparent\" ng-click=\"send({payload: 4})\">\n        <div class=\"svg\">\n            <svg id=\"svg-articles\" width=\"180\" height=\"180\" viewBox=\"0 0 200 200\">\n                <defs>\n                    <clipPath id=\"svg-articles-clip\">\n                        <rect x=\"59.77\" y=\"68\" width=\"80\" height=\"52\" />\n                    </clipPath>\n                </defs>\n                <title>Monitoreo</title>\n                <g id=\"svg-articles-g-01\">\n                    <path class=\"cls-1\" d=\"M47.6,122v12a4,4,0,0,0,4,4h96a4,4,0,0,0,4-4V122H47.6Z\" />\n                    <polygon class=\"cls-2\" points=\"115.6 154.01 83.6 154.01 87.6 130.01 111.6 130.01 115.6 154.01\" />\n                    <rect class=\"cls-3\" x=\"79.6\" y=\"152.01\" width=\"40\" height=\"2\" />\n                    <path class=\"cls-4\" d=\"M147.6,62h-96a4,4,0,0,0-4,4v56h104V66a4,4,0,0,0-4-4h0Z\" />\n                    <polygon class=\"cls-5\" points=\"147.6 66.01 147.6 118.01 51.6 118.01 51.6 66.01 147.6 66.01 147.6 66.01\" />\n                    <path class=\"cls-3\" d=\"M47.6,122v12a4,4,0,0,0,4,4h96a4,4,0,0,0,4-4V122H47.6Z\" />\n                    <circle class=\"cls-4\" cx=\"99.6\" cy=\"130.01\" r=\"2\" />\n                    <rect class=\"cls-6\" x=\"59.77\" y=\"66.01\" width=\"80\" height=\"52\" />\n                </g>\n                <g clip-path=\"url(#svg-articles-clip)\">\n                    <g id=\"svg-articles-g-02\">\n                        <rect class=\"cls-7\" x=\"62.59\" y=\"35.93\" width=\"22.62\" height=\"6.78\" />\n                        <rect class=\"cls-8\" x=\"88.76\" y=\"35.93\" width=\"49.34\" height=\"6.78\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"74.2\" width=\"76.06\" height=\"2.24\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"79.09\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"83.76\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"88.44\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"116.61\" width=\"76.06\" height=\"2.24\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"121.5\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"126.18\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"130.86\" width=\"76.06\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"93.28\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"98.12\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"62.04\" y=\"102.96\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"94.88\" y=\"136.05\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"94.88\" y=\"140.89\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-8\" x=\"94.88\" y=\"145.73\" width=\"43.38\" height=\"2.23\" />\n                        <rect class=\"cls-7\" x=\"62.04\" y=\"108.91\" width=\"76.06\" height=\"6\" />\n                        <polyline class=\"cls-9\" points=\"62.59 46.53 62.59 70.2 136.8 70.2\" />\n                        <polyline class=\"cls-10\" points=\"72.3 65.31 89.21 63.81 99.97 54.12 114.29 57.18 128.78 51.42\" />\n                        <circle class=\"cls-11\" cx=\"89.14\" cy=\"63.47\" r=\"2\" />\n                        <circle class=\"cls-11\" cx=\"100.07\" cy=\"53.99\" r=\"2\" />\n                        <circle class=\"cls-11\" cx=\"114.57\" cy=\"57.32\" r=\"2\" />\n                        <circle class=\"cls-11\" cx=\"128.78\" cy=\"51.99\" r=\"2\" />\n                        <circle class=\"cls-11\" cx=\"72.3\" cy=\"65.31\" r=\"2\" />\n                        <rect class=\"cls-8\" x=\"107.89\" y=\"93.23\" width=\"30\" height=\"12\" />\n                        <rect class=\"cls-11\" x=\"62.04\" y=\"136.01\" width=\"30\" height=\"12\" />\n                    </g>\n                </g>\n            </svg>\n        </div></md-button>\n    </div>\n    <div class=\"box mr20\">\n        <div class=\"title\">Reportes</div>\n        <md-button style=\"background-color: transparent\" ng-click=\"send({payload: 5})\">\n        <div class=\"svg\">\n            <svg id=\"svg-slide\" width=\"180\" height=\"180\" viewBox=\"0 0 200 200\">\n                <title>Slide</title>\n                <g id=\"svg-slide-g-01\">\n                    <rect class=\"cls-1\" x=\"55.28\" y=\"62.44\" width=\"90.19\" height=\"66.13\" />\n                </g>\n                <g id=\"svg-slide-g-02\">\n                    <rect class=\"cls-2\" x=\"51.38\" y=\"54.43\" width=\"98\" height=\"8.01\" />\n                </g>\n                <g id=\"svg-slide-g-03\">\n                    <rect class=\"cls-4\" x=\"99.3\" y=\"131.89\" width=\"2.15\" height=\"5.53\" />\n                    <path class=\"cls-5\" d=\"M100.37,135.87a5,5,0,1,0,5,5A5,5,0,0,0,100.37,135.87Zm0,7.91a2.87,2.87,0,1,1,2.87-2.88A2.88,2.88,0,0,1,100.37,143.78Z\" />\n                    <rect class=\"cls-2\" x=\"51.38\" y=\"128.57\" width=\"98\" height=\"3.32\" />\n                </g>\n                <g id=\"svg-slide-g-04\">\n                    <rect class=\"cls-3\" x=\"60.56\" y=\"72.17\" width=\"50\" height=\"2\" />\n                    <rect class=\"cls-3\" x=\"60.56\" y=\"68.17\" width=\"38\" height=\"2\" />\n                </g>\n                <g id=\"svg-slide-g-05\">\n                    <path class=\"cls-6\" d=\"M110.58,83.14l9.55-14.2c-5.71-4.09-11.86-6.5-20.86-6.5V79.88C104.66,79.88,107.72,81.1,110.58,83.14Z\" />\n                    <path class=\"cls-7\" d=\"M115.14,97.08a14.31,14.31,0,0,1-2.1,7.45L125.38,112a28.8,28.8,0,0,0-7.9-38.36l-8.37,11.72A14.37,14.37,0,0,1,115.14,97.08Z\" />\n                    <path class=\"cls-2\" d=\"M113,104.53a14.38,14.38,0,0,1-12.3,6.95c-8,0-15.14-6.45-15.14-14.4s6.46-14.4,13.66-14.4V68.28c-14.4,0-28.06,12.89-28.06,28.8s13.26,28.8,29.17,28.8A29.1,29.1,0,0,0,125.19,112Z\" />\n                </g>\n                <g id=\"svg-slide-g-06\">\n                    <rect class=\"cls-6\" x=\"60.56\" y=\"118.17\" width=\"6\" height=\"6\" />\n                    <rect class=\"cls-7\" x=\"86.56\" y=\"118.17\" width=\"6\" height=\"6\" />\n                    <rect class=\"cls-2\" x=\"111.56\" y=\"118.17\" width=\"6\" height=\"6\" />\n                    <rect class=\"cls-3\" x=\"119.56\" y=\"121.17\" width=\"20\" height=\"1\" />\n                    <rect class=\"cls-3\" x=\"94.56\" y=\"121.17\" width=\"10\" height=\"1\" />\n                    <rect class=\"cls-3\" x=\"68.56\" y=\"121.17\" width=\"10\" height=\"1\" />\n                </g>\n            </svg>\n        </div></md-button>\n    </div>\n     <div class=\"box\">\n            <div class=\"title\">Manual</div>\n            <md-button style=\"background-color: transparent\" ng-click=\"send({payload: 6})\">\n            <div class=\"svg\">\n                <svg id=\"svg-digital-tool\" width=\"180\" height=\"180\" viewBox=\"0 0 200 200\">\n                    <title>Digital Tool</title>\n                    <g id=\"svg-digital-tool-g-01\">\n                        <circle class=\"cls-1\" cx=\"97\" cy=\"124.65\" r=\"14.78\" />\n                        <rect class=\"cls-2\" x=\"72.58\" y=\"42.67\" width=\"46.13\" height=\"86.49\" rx=\"5.77\" ry=\"5.77\" />\n                        <rect class=\"cls-3\" x=\"92.77\" y=\"47.71\" width=\"5.77\" height=\"1.44\" />\n                        <circle class=\"cls-3\" cx=\"95.65\" cy=\"123.39\" r=\"2.9\" />\n                        <rect class=\"cls-1\" x=\"95.65\" y=\"130.02\" width=\"31.71\" height=\"26.15\" />\n                        <rect class=\"cls-4\" x=\"75.47\" y=\"54.2\" width=\"40.36\" height=\"63.43\" />\n                    </g>\n                    <g id=\"svg-digital-tool-g-02\">\n                        <rect class=\"cls-5\" x=\"90\" y=\"90\" width=\"15\" height=\"15\" rx=\"2\" ry=\"2\" />\n                    </g>\n                    <g id=\"svg-digital-tool-g-03\">\n                        <rect class=\"cls-5\" x=\"78.21\" y=\"76.21\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                        <rect class=\"cls-5\" x=\"90.74\" y=\"76.21\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                        <rect class=\"cls-5\" x=\"78.21\" y=\"60.99\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                        <rect class=\"cls-5\" x=\"90.74\" y=\"60.99\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                        <rect class=\"cls-5\" x=\"103.27\" y=\"60.99\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                        <rect class=\"cls-5\" x=\"103.27\" y=\"76.21\" width=\"10\" height=\"10\" rx=\"2\" ry=\"2\" />\n                    </g>\n                    <g id=\"svg-digital-tool-g-04\">\n                        <path class=\"cls-1\" d=\"M121.6,118.34a5.76,5.76,0,0,0,5.77-5.77V112.3c0-3.65,0-13.36,3.8-19.39a5.77,5.77,0,0,0-9.76-6.15c-5.58,8.86-5.58,20.55-5.57,25.55v0.27A5.77,5.77,0,0,0,121.6,118.34Z\" />\n                    </g>\n                    <g id=\"svg-digital-tool-g-05\">\n                        <circle class=\"cls-1\" cx=\"72.58\" cy=\"94.42\" r=\"5.77\" />\n                        <circle class=\"cls-1\" cx=\"72.58\" cy=\"82.76\" r=\"5.77\" />\n                        <circle class=\"cls-1\" cx=\"72.58\" cy=\"105.96\" r=\"5.77\" />\n                        <path class=\"cls-1\" d=\"M127.36,106.09v23.06H104.3A23.06,23.06,0,0,1,127.36,106.09Z\" />\n                        <circle class=\"cls-1\" cx=\"115.83\" cy=\"129.16\" r=\"11.53\" />\n                        <circle class=\"cls-1\" cx=\"72.58\" cy=\"117.49\" r=\"5.77\" />\n                    </g>\n                </svg>\n            </div>\n            </md-button>\n            </div>\n                    <div class=\"line\"></div>  \n    </div>\n</body>\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 70,
+        "y": 160,
+        "wires": [
+            [
+                "c6e43caf.27894"
+            ]
+        ]
+    },
+    {
+        "id": "16e6f4e5.437143",
+        "type": "ui_switch",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "label": "Comenzar Terapia",
+        "tooltip": "Al presionar este botón comenzará la terapia",
+        "group": "dede2693.22435",
+        "order": 4,
+        "width": 11,
+        "height": 2,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "VERDADERO",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "FALSO",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "x": 390,
+        "y": 1440,
+        "wires": [
+            [
+                "6285c246.869e8c"
+            ]
+        ]
+    },
+    {
+        "id": "6285c246.869e8c",
+        "type": "switch",
+        "z": "15d07d93.69adea",
+        "name": "Terapia",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "VERDADERO",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "regex",
+                "v": "FALSO",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 600,
+        "y": 1440,
+        "wires": [
+            [
+                "5617461f.32a65",
+                "1d11f0cd.ce1437"
+            ],
+            [
+                "8c8afb15.0362a8",
+                "e89ede01.1c7238"
+            ]
+        ]
+    },
+    {
+        "id": "bb61f99f.d597",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 1830,
+        "y": 1440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa3ccb74.7f63d8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "ondas POST",
+        "func": "paciente = flow.get('pacienteid') || 0\nmusica= flow.get('musicaselectid') || 0\nrnd= Math.round(Math.random()*100);\n//estres = flow.get('estres') || 0\nestres = rnd;\n//estres = 2\nalfa=rnd;\nbeta=rnd;\nteta=rnd;\ngama=rnd;\nterapia= flow.get('terapia') || 0\ntimestamp= flow.get('timestamps') || 0\nmsg.topic = \"INSERT INTO ondas (`paciente_id`,`musica_id`,`ondas_estres`,`ondas_alfa`,`ondas_beta`,`ondas_teta`,`ondas_gamma`,`terapia`,`timestamp`) VALUES ('\"+ paciente +\"','\"+ musica +\"',\"+ estres +\",'\"+ alfa +\"','\"+ beta +\"','\"+ teta +\"','\"+ gama +\"','\"+ terapia +\"','\"+ timestamp +\"');\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1670,
+        "y": 1440,
+        "wires": [
+            [
+                "bb61f99f.d597"
+            ]
+        ]
+    },
+    {
+        "id": "bf0698ae.925d68",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Sección 2(Pacientes): Conexión a base de datos, generación de servicios REST registro, actualización,eliminación y obtención de pacientes",
+        "info": "",
+        "x": 490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ddcc6629.a87af",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Sección 4(Monitoreo): Funcionamiento del sistema basado en la obtención del nivel de estrés del paciente",
+        "info": "",
+        "x": 390,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "b4185873.fa4688",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Sección 1(Inicio): Menú ",
+        "info": "",
+        "x": 120,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7dc232e7.9130f4",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Pobla un select con los pacientes y la música de la base de datos",
+        "info": "",
+        "x": 250,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "902e58cb.a2e0a",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Switch dependiendo de la posición inicia la terapia, si no se selecciona un usuario por defecto será el usuario \"Invitado\"",
+        "info": "",
+        "x": 420,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "7cc20059.d30c48",
+        "type": "ui_toast",
+        "z": "15d07d93.69adea",
+        "position": "bottom left",
+        "displayTime": "10",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "topic": "Importante",
+        "name": "",
+        "x": 1210,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "8f615be3.684268",
+        "type": "inject",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "topic": "",
+        "payload": "FALSO",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "x": 100,
+        "y": 1440,
+        "wires": [
+            [
+                "16e6f4e5.437143"
+            ]
+        ]
+    },
+    {
+        "id": "c6e43caf.27894",
+        "type": "ui_ui_control",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "events": "all",
+        "x": 200,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "34bbfa72.31f70e",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/musica",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 820,
+        "wires": [
+            [
+                "94114aa9.9d74f8"
+            ]
+        ]
+    },
+    {
+        "id": "94114aa9.9d74f8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica GET",
+        "func": "msg.topic=\"SELECT * FROM musica\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 820,
+        "wires": [
+            [
+                "a60f2f81.82a33"
+            ]
+        ]
+    },
+    {
+        "id": "a60f2f81.82a33",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 820,
+        "wires": [
+            [
+                "70bdf797.eb158"
+            ]
+        ]
+    },
+    {
+        "id": "70bdf797.eb158",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "a01f73b.afc241",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "musica",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 90,
+        "y": 740,
+        "wires": [
+            [
+                "12c942f1.86136d"
+            ]
+        ]
+    },
+    {
+        "id": "ddd5c691.fe4308",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1050,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "824ef489.31f7a8",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/musica/update",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 900,
+        "wires": [
+            [
+                "5cba3d6a.81a374"
+            ]
+        ]
+    },
+    {
+        "id": "5cba3d6a.81a374",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica UPDATE",
+        "func": "msg.topic=\"UPDATE musica SET musica_nombre='\" + msg.payload.musica_nombre + \"',musica_genero='\" + msg.payload.musica_genero + \"', musica_url='\" + msg.payload.musica_url + \"', musica_eficiencia='\" + msg.payload.musica_eficiencia + \"' WHERE musica_id='\" + msg.payload.musica_id + \"'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 900,
+        "wires": [
+            [
+                "61890b9f.4b6b24"
+            ]
+        ]
+    },
+    {
+        "id": "a12c5899.2a7da",
+        "type": "json",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 750,
+        "y": 740,
+        "wires": [
+            [
+                "ca10a4ae.8d88f"
+            ]
+        ]
+    },
+    {
+        "id": "12c942f1.86136d",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica query",
+        "func": "msg.topic=\"SELECT * FROM musica\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 740,
+        "wires": [
+            [
+                "5b1cb27.afc594c"
+            ]
+        ]
+    },
+    {
+        "id": "5b1cb27.afc594c",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 740,
+        "wires": [
+            [
+                "a12c5899.2a7da"
+            ]
+        ]
+    },
+    {
+        "id": "7c54a469.b25d64",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "/api/musica/delete",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 980,
+        "wires": [
+            [
+                "a4fd82b.e414"
+            ]
+        ]
+    },
+    {
+        "id": "a4fd82b.e414",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica DELETE",
+        "func": "msg.topic=\"DELETE FROM musica WHERE musica_id='\" + msg.payload.musica_id + \"'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 980,
+        "wires": [
+            [
+                "35afef9e.97291"
+            ]
+        ]
+    },
+    {
+        "id": "61890b9f.4b6b24",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 900,
+        "wires": [
+            [
+                "5c27cd86.2652ac"
+            ]
+        ]
+    },
+    {
+        "id": "4a72ab7a.c577dc",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "35afef9e.97291",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 980,
+        "wires": [
+            [
+                "ab9bbad0.00c54"
+            ]
+        ]
+    },
+    {
+        "id": "ab9bbad0.00c54",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "43cb41d4.847a2",
+        "type": "http in",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "api/musica",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 1060,
+        "wires": [
+            [
+                "1df92443.0e63fc"
+            ]
+        ]
+    },
+    {
+        "id": "1df92443.0e63fc",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica POST",
+        "func": "nombre = msg.payload.musica_nombre\nurl = msg.payload.musica_url\n.replace(/[']/g, \"%27\")\nmsg.topic = \"INSERT INTO musica (`musica_nombre`,`musica_url`) VALUES ('\"+ nombre +\"','\"+ url +\"');\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 1060,
+        "wires": [
+            [
+                "f0ae09ba.251848"
+            ]
+        ]
+    },
+    {
+        "id": "f0ae09ba.251848",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 630,
+        "y": 1060,
+        "wires": [
+            [
+                "753b3378.f05404"
+            ]
+        ]
+    },
+    {
+        "id": "6de882e5.2afd74",
+        "type": "http response",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "5c27cd86.2652ac",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "UPDATE response",
+        "func": "msg.payload=msg.result;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 900,
+        "wires": [
+            [
+                "4a72ab7a.c577dc"
+            ]
+        ]
+    },
+    {
+        "id": "753b3378.f05404",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST response",
+        "func": "msg.payload=msg.result;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 800,
+        "y": 1060,
+        "wires": [
+            [
+                "6de882e5.2afd74"
+            ]
+        ]
+    },
+    {
+        "id": "5f77f069.aa9e",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "CRUD REST Música",
+        "info": "",
+        "x": 110,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a506f744.016838",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "GET Música",
+        "info": "",
+        "x": 90,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "faccb725.3b858",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "UPDATE Música",
+        "info": "",
+        "x": 100,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "ad89c885.4fe16",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "DELETE Música",
+        "info": "",
+        "x": 100,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "3520cd83.d8c0b2",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "POST Música",
+        "info": "",
+        "x": 90,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "ca10a4ae.8d88f",
+        "type": "template",
+        "z": "15d07d93.69adea",
+        "name": "musica HTML",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>YDSYS Música</title>\n  <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-timepicker/0.5.2/css/bootstrap-timepicker.min.css\" />\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\n    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css\" />\n    <link type=\"text/css\" rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css\" />\n    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js\"></script>\n    <script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js\"></script>\n    <script type=\"text/javascript\">\n        $(function() {\n            $(\"#jsgrid\").jsGrid({\n                width: \"98%\",\n                inserting: true,\n                editing: true,\n                sorting: true,\n                paging: true,\n                filtering: true,\n                inserting: true,\n                autoload: true,\n                pageSize: 15,\n                pageButtonCount: 5,\n                autoload: true,\n                deleteConfirm: function(item) {\n                    return \"La pista músical \\\"\" + item.musica_nombre + \"\\\" va a ser eliminada del registro\";\n                },\n                fields: [\n                    {\n                    name: \"musica_id\",\n                    type: \"hidden\",\n                    css: 'hide'\n                    },\n                    {\n                    title: \"Título\",\n                    name: \"musica_nombre\",\n                    type: \"text\",\n                    width: 50,\n                    validate: \"required\"\n                    }, \n                    {\n                    title: \"Género\",\n                    name: \"musica_genero\",\n                    type: \"text\",\n                    width: 50,\n                    validate: \"required\"\n                    }, \n\t\t\t\t\t{\n                    title: \"Url\",\n                    name: \"musica_url\",\n                    type: \"text\",\n                    width: 100,\n                    validate: \"required\"\n                    }, \n\t\t\t\t\t{\n                    title: \"Eficiencia\",\n                    name: \"musica_eficiencia\",\n                    width: 50\n\t\t\t\t\t},\n\t\t\t\t\t{\n                    type: \"control\"\n                    }],\n\n                controller: \n                                \n                {\n                        loadData: function(filter) {\n                          return $.ajax({\n                            url: \"/api/musica\",\n                            dataType: \"json\"\n                          });\n                        },\n\n                    insertItem: function(item) {\n                        var d = $.Deferred();\n                        $.ajax({\n                            type: \"POST\",\n                            url: \"/api/musica\",\n                            data: item\n                        }).done(function(insertItemReturnedFromServer) {\n                            d.resolve(insertItemReturnedFromServer); \n                            $(\"#jsgrid\").jsGrid(\"loadData\");\n                            reloadSelect();\n                        });\n                        return d.promise();\n                    },\n                    updateItem: function(item) {\n\n                            var d = $.Deferred();\n                            $.ajax({\n                                type: \"PUT\",\n                                url: \"/api/musica/update\",\n                                data: item\n                            }).done(function(updatedItemReturnedFromServer) {\n                                d.resolve(updatedItemReturnedFromServer); \n                                                reloadSelect();\n                            });\n                            return d.promise();\n                    },\n                    /*updateItem: function(item) {\n                        return $.ajax({\n                            type: \"PUT\",\n                            url: \"/api/pacientes/update\",\n                            data: item\n                        });\n                    },*/\n                    deleteItem: function(item) {\n                        return $.ajax({\n                            type: \"DELETE\",\n                            url: \"/api/musica/delete\",\n                            data: item,\n                             success: function () {\n                                reloadSelect();\n                            }\n                        }).done(function(deleteItemReturnedFromServer)\n                        {\n                            d.resolve(deleteItemReturnedFromServer); \n                              \n                        });\n                        return d.promise();\n                    }\n                }\n            });\n           // setInterval(function(){$(\"#jsgrid\").jsGrid(\"loadData\");}, 5000);\n        });\n    </script>\n<style>\n    .form-control-valid{}\n@charset \"UTF-8\";\n*, *:before, *:after {box-sizing: border-box;}\n\n:root {\n  --textcolor:black;\n  --accentcolor:#585fe3;\n  --lightaccentcolor:#9df;\n  --reversecolor:#fff;\n}\nhtml {\n  font-size:16px;\n  font-family:Trebuchet,sans-serif;\n}\nbody {\n  background:var(--accentcolor);\n  color:var(--reversecolor);\n  margin:0;padding:0;\n  line-height:1.5;\n}\nstrong, b {font-weight:bold;}\n#wrapper {\n  margin:0 auto;padding:1.2rem;\n  width:100%;height:auto;\n  min-width:320px;max-width:1040px;\n  background:var(--reversecolor);\n  color:var(--textcolor);\n  text-align:left;\n  border:2px solid var(--accentcolor);\n  border-radius:0 0 16px 16px;\n  box-shadow:4px 4px 16px #333;\n}\nh1, h2 {\n  color:var(--accentcolor);\n  text-align:left;\n}\nh1 {font-size:4rem;margin:0;}\nh2 {font-size:1.5rem;margin:0 0 0 0;}\np {font-size:1rem;margin:1rem 0 1rem 0;}\na:link, a:visited {color:var(--accentcolor);}\na:hover {text-decoration:none;}\n\n#rateFld {font-size:1.2rem;width:4rem;text-align:center;padding:0;margin:0 0 0 4px;}\n#txtFld {width:100%;height:4.2rem;font-size:1.8rem;font-family:inherit;}\nbutton {\n  -webkit-appearance:none;\n  font-size:1.4rem;\n  font-weight:normal;\n  background:var(--lightaccentcolor);\n  border-radius:12px;\n  border:2px solid var(--accentcolor);\n  color:var(--textcolor);\n  padding:0.3rem 0.5rem 0.3rem 0.5rem;\n  cursor:pointer;\n  margin:10px 20px 10px 20px;\n}\nbutton:hover {\n  color:var(--reversecolor);\n  background:var(--accentcolor);\n}\nbutton:disabled, select:disabled {\n  cursor:not-allowed;\n  opacity:0.3;\n}\nselect {\n  background:var(--lightaccentcolor);\n  color:var(--textcolor);\n  width:auto;\n  font-size:inherit;\n  font-weight:normal;\n  text-align:center;\n  height:auto;\n  border-radius:8px;\n  margin:10px 0;\n}\n.uiunit {display:inline-block;margin:1rem;text-align:left;}\n\n#warning {color:red;font-size:1.4rem;display:none;}\n</style>\n</head>\n<body>\n    <nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n   <a  class=\"navbar-brand\"  href=\"/ui\" target=\"_top\">YDSYS</a> \n    </div>\n    <ul class=\"nav navbar-nav\">\n      <li><a href=\"/pacientes\" target=\"_self\">Pacientes</a></li>\n      <li class=\"active\"><a href=\"/musica\" target=\"_self\">Música</a></li>\n      <li><a href=\"https://forms.gle/YpkgNWMas1WLcNHn6\" target=\"_self\">Estresores</a></li>\n    </ul>\n  </div>\n</nav>\n        <div id=\"wrapper\">\n        <center><h3>Lista de pistas músicales</h3></center>\n        <section class=\"row\">\n        <div class=\"col-md-6\"></div>\n        <div class=\"col-md-6\" id=\"jsgrid\">\n        </div>\n        </section>\n        <section class=\"row\">\n            <br/>\n            <label>Escuchar música</label>\n            <select\nid=\"clienteP\"\nclass=\"form-control\"\nname=\"clienteP\"\ndata-source=\"/api/musica\"\ndata-valueKey=\"musica_url\"\ndata-displayKey=\"musica_nombre\">\n</select>\n        <div class=\"col-md-4\"></div>\n        <div class=\"col-md-4\">\n                <audio id=\"audio\" preload=\"metadata\" controls>\n        <source id=\"audioSource\" src=\"\"></source>\n    Your browser does not support the audio element.\n    </audio> \n        </div>\n        <div class=\"col-md-4\"></div>\n        </section>\n        </div>\n<script>\n\nvar globalid = 0;\n                $(document).on('change', '#clienteP', function(e) {\n                globalid = this.options[e.target.selectedIndex].value;\n                console.log(globalid);\n                  var audio = document.getElementById('audio');\n\n                  var source = document.getElementById('audioSource');\n                  source.src = globalid;\n                  \n                  audio.addEventListener('loadedmetadata', function() {\n                        console.log(\"Playing \" + audio.src + \", for: \" + audio.duration + \"seconds.\");\n                        audio.play(); \n                    });\n                  audio.load(); //call this to just preload the audio without playing\n                 \n                });\n                function reloadSelect()\n                {\n                     $('#clienteP').find('option').remove()    \n                     $('#clienteP').each(function() {\n\n                                        var $select = $(this);\n\n                                            $select.append('<option>Por favor seleccione música a escuchar</option>');\n                                            \n                                            $.ajax({\n                                                url: $select.attr('data-source'),\n                                            }).then(function(options) {\n                                                options.map(function(option) {\n                                                var $option = $('<option>');\n                                                \n                                                $option\n                                                    .val(option[$select.attr('data-valueKey')])\n                                                    .text(option[$select.attr('data-displayKey')]);\n                                                \n                                                $select.append($option);\n                                                $select.trigger(\"chosen:updated\");\n                                                });\n                                            });\n                                        });\n                }\n                reloadSelect();\n</script>\n</body>\n</html>\n",
+        "output": "str",
+        "x": 900,
+        "y": 740,
+        "wires": [
+            [
+                "ddd5c691.fe4308"
+            ]
+        ],
+        "info": "Utiliza jsgrid para manejar las operaciones de crud en una tabla, utiliza promesas para volver a cargar la tabla (loadData), durante el insert para así obtener el id dado que es un autoincremental en la base de datos."
+    },
+    {
+        "id": "4a81f151.5b6a38",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Sección 3(Música): Conexión a base de datos, generación de servicios REST registro, actualización,eliminación y obtención de pacientes",
+        "info": "",
+        "x": 480,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "c719457a.af0738",
+        "type": "debug",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1690,
+        "y": 2960,
+        "wires": []
+    },
+    {
+        "id": "62727152.09eb38",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "GET VAR musica_id",
+        "func": "var terapia = \"fase2\";\nflow.set('terapia',terapia);\nvar id=flow.get('idmusica') || 0;\nmsg.topic=\"SELECT musica_url FROM `musica` WHERE  musica_id=\"+id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2560,
+        "y": 1140,
+        "wires": [
+            [
+                "b3c63d6c.aaee38"
+            ]
+        ]
+    },
+    {
+        "id": "5617461f.32a65",
+        "type": "delay",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 840,
+        "y": 1380,
+        "wires": [
+            [
+                "e87aee08.c6c86"
+            ]
+        ]
+    },
+    {
+        "id": "9977af09.cfdc2",
+        "type": "cast-to-client",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "",
+        "contentType": "audio/mp3",
+        "message": "",
+        "language": "en",
+        "ip": "192.168.1.46",
+        "port": "8009",
+        "volume": "25",
+        "x": 3090,
+        "y": 1140,
+        "wires": [
+            [
+                "9ab9c000.f28368"
+            ]
+        ]
+    },
+    {
+        "id": "314f1cc4.1cd3e4",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "url",
+                "pt": "msg",
+                "to": "payload[0].musica_url",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "contentType",
+                "pt": "msg",
+                "to": "audio/mp3",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2880,
+        "y": 1140,
+        "wires": [
+            [
+                "9977af09.cfdc2"
+            ]
+        ]
+    },
+    {
+        "id": "1a3a82c9.e6a415",
+        "type": "calculator",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "inputMsgField": "payload",
+        "outputMsgField": "payload",
+        "operation": "avg",
+        "constant": "2",
+        "x": 1640,
+        "y": 3020,
+        "wires": [
+            [
+                "48b58ab0.20a57c"
+            ]
+        ]
+    },
+    {
+        "id": "46c6ed98.ccf444",
+        "type": "delay",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 1400,
+        "y": 3000,
+        "wires": [
+            [
+                "1a3a82c9.e6a415"
+            ]
+        ]
+    },
+    {
+        "id": "48b58ab0.20a57c",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "func": "var numbers = msg.payload\nif(numbers >= 1)\n{\n    numbers=1;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1530,
+        "y": 3060,
+        "wires": [
+            [
+                "c719457a.af0738"
+            ]
+        ]
+    },
+    {
+        "id": "c4365d77.252fa8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR paciente_id",
+        "func": "//var count=context.get('count') || 0;\n//var id=flow.get('count') || 0;\nvar pacienteid = msg.id;\nflow.set('pacienteid',pacienteid);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1430,
+        "y": 3180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b2634247.ac349",
+        "type": "ui_template",
+        "z": "15d07d93.69adea",
+        "group": "c1ad6204.b5c8a",
+        "name": "Paciente select",
+        "order": 1,
+        "width": 27,
+        "height": 3,
+        "format": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <script src=\"https://code.jquery.com/jquery-3.3.1.js\"></script>\n  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">\n  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>\n  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js\"></script>\n</head>\n<body>\n    <div class=\"container\">\n<div class=\"row\">\n    <div class=\"col-sm\">\n        <label>Seleccione el paciente que desea generar el reporte: </label>\n        <select\n        id=\"clienteP\"\n        class=\"form-control\"\n        name=\"clienteP\"\n        data-source=\"/api/pacientes\"\n        data-valueKey=\"paciente_id\"\n        data-displayKey=\"paciente_nombre\">\n        </select>\n    </div>\n    <div class=\"col-sm\">\n        <label>Seleccione la pista musical que fue aplicada para la terapia: </label>\n        <select\n        id=\"musicaP\"\n        class=\"form-control\"\n        name=\"musicaP\"\n        data-source=\"/api/musica\"\n        data-valueKey=\"musica_id\"\n        data-displayKey=\"musica_nombre\">\n        </select>\n    </div>\n</div>\n</div>\n<script>\nvar globalid = 0;\nvar musicaurl=0;\nvar theScope = scope;\n                $(document).on('change', '#clienteP', function(e) {\n                globalid = this.options[e.target.selectedIndex].value;\n                theScope.send({id: globalid});\n                });\n                $(document).on('change', '#musicaP', function(e) {\n                musicaurl = this.options[e.target.selectedIndex].value;\n                theScope.send({url: musicaurl});\n                });\n                 $('#musicaP').each(function() {\n                        var $select = $(this);\n                        \n                            $select.append('<option>Por favor seleccione la música</option>');\n                            \n                            $.ajax({\n                                url: $select.attr('data-source'),\n                            }).then(function(options) {\n                                options.map(function(option) {\n                                var $option = $('<option>');\n                                \n                                $option\n                                    .val(option[$select.attr('data-valueKey')])\n                                    .text(option[$select.attr('data-displayKey')]);\n                                \n                                $select.append($option);\n                                });\n                            });\n                        });\n                      $('#clienteP').each(function() {\n                        var $select = $(this);\n                        \n                            $select.append('<option value=\"0\">Invitado</option>');\n                            \n                            $.ajax({\n                                url: $select.attr('data-source'),\n                            }).then(function(options) {\n                                options.map(function(option) {\n                                var $option = $('<option>');\n                                \n                                $option\n                                    .val(option[$select.attr('data-valueKey')])\n                                    .text(option[$select.attr('data-displayKey')]);\n                                \n                                $select.append($option);\n                                });\n                            });\n                        });\n</script>\n</body>\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1220,
+        "y": 3180,
+        "wires": [
+            [
+                "c4365d77.252fa8"
+            ]
+        ]
+    },
+    {
+        "id": "aa2ee76d.45f8b8",
+        "type": "moment",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "date",
+        "inTz": "America/Guayaquil",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "",
+        "locale": "es_ES",
+        "output": "payload",
+        "outputType": "msg",
+        "outTz": "America/Guayaquil",
+        "x": 1260,
+        "y": 1440,
+        "wires": [
+            [
+                "2b3b1ad5.453986"
+            ]
+        ]
+    },
+    {
+        "id": "2b3b1ad5.453986",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR timestamp",
+        "func": "//var count=context.get('count') || 0;\n//var id=flow.get('count') || 0;\nvar timestamps = msg.payload;\nflow.set('timestamps',timestamps);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1480,
+        "y": 1440,
+        "wires": [
+            [
+                "aa3ccb74.7f63d8",
+                "8e5265da.6fad2"
+            ]
+        ]
+    },
+    {
+        "id": "4775ca97.2433f4",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "func": "var pacienteid=flow.get('pacienteid') || 0;\nmsg.topic=\"SELECT timestamp,ondas_estres FROM ondas where paciente_id=\"+pacienteid+\" AND terapia='activada'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 210,
+        "y": 3040,
+        "wires": [
+            [
+                "9f604866.498028"
+            ]
+        ]
+    },
+    {
+        "id": "9f604866.498028",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 390,
+        "y": 3040,
+        "wires": [
+            [
+                "baa3972.5d96b68"
+            ]
+        ]
+    },
+    {
+        "id": "baa3972.5d96b68",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "func": "var series =[\"Nivel de estrés\", \"x\"];\nvar labels = [\"Labels\"];\nvar data = [];\n\nvar i, len, string;\n\nfor (i = 1, len = msg.payload.length, string = \"\"; i < len; i++) {\ndata.push({\"x\":Date.parse(msg.payload[i].timestamp), \"y\":Number(msg.payload[i].ondas_estres)});\n}\n\ndata = [data];\n\nmsg.payload = [{series, data, labels}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 3040,
+        "wires": [
+            [
+                "a035aa84.770c18"
+            ]
+        ]
+    },
+    {
+        "id": "a035aa84.770c18",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "c1ad6204.b5c8a",
+        "order": 7,
+        "width": 9,
+        "height": 7,
+        "label": "Nivel de estrés",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 720,
+        "y": 3120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d11f0cd.ce1437",
+        "type": "trigger",
+        "z": "15d07d93.69adea",
+        "op1": "",
+        "op2": "0",
+        "op1type": "pay",
+        "op2type": "str",
+        "duration": "-3",
+        "extend": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "name": "",
+        "x": 860,
+        "y": 1440,
+        "wires": [
+            [
+                "5c9316.c0cdf4ec"
+            ]
+        ]
+    },
+    {
+        "id": "3bee96aa.6b256a",
+        "type": "ui_button",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "160ff887.599e8f",
+        "order": 4,
+        "width": 12,
+        "height": 1,
+        "passthru": false,
+        "label": "Generar reporte",
+        "tooltip": "",
+        "color": "#FFFFFF",
+        "bgcolor": "#bdb6b5",
+        "icon": "",
+        "payload": "VERDADERO",
+        "payloadType": "str",
+        "topic": "",
+        "x": 160,
+        "y": 2680,
+        "wires": [
+            [
+                "93088202.eae4c8",
+                "8582d787.29ee",
+                "57507446.166bbc",
+                "642c6bca.f62f4c"
+            ]
+        ]
+    },
+    {
+        "id": "c340870d.e71b88",
+        "type": "switch",
+        "z": "15d07d93.69adea",
+        "name": "Reporte",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "VERDADERO",
+                "vt": "str",
+                "case": false
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 120,
+        "y": 3140,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bb06326e.3c1998",
+        "type": "inject",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 390,
+        "y": 3100,
+        "wires": [
+            [
+                "a035aa84.770c18"
+            ]
+        ]
+    },
+    {
+        "id": "80ca03e4.79f318",
+        "type": "ui_text",
+        "z": "15d07d93.69adea",
+        "group": "dede2693.22435",
+        "order": 5,
+        "width": 12,
+        "height": 2,
+        "name": "",
+        "label": "Etapa:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1210,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "8c8afb15.0362a8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "SET VAR terapia DEFAULT",
+        "func": "var terapia = \"fase1\";\nflow.set('terapia',terapia);\nterapia= flow.get('terapia') || 0\nmsg.payload=terapia\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 920,
+        "y": 1660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c9316.c0cdf4ec",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "GET VAR terapia",
+        "func": "terapia= flow.get('terapia') || 0\nmsg.payload=terapia;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1050,
+        "y": 1440,
+        "wires": [
+            [
+                "80ca03e4.79f318",
+                "aa2ee76d.45f8b8"
+            ]
+        ]
+    },
+    {
+        "id": "e87aee08.c6c86",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "GET VAR paciente_id",
+        "func": "var id=flow.get('idpaciente') || 0;\nmsg.payload = id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1020,
+        "y": 1380,
+        "wires": [
+            [
+                "6b75ce34.d5c4a8"
+            ]
+        ]
+    },
+    {
+        "id": "6b75ce34.d5c4a8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Avg Estrés GET",
+        "func": "pacienteid=flow.get('idpaciente') || 0;\nmusica= flow.get('idmusica') || 0;\nmsg.topic=\"SELECT AVG(ondas_estres) as media FROM `ondas` WHERE musica_id=\"+musica+\" AND terapia LIKE 'fase1' AND paciente_id=\"+pacienteid;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1220,
+        "y": 1380,
+        "wires": [
+            [
+                "876f1464.7b45c8"
+            ]
+        ]
+    },
+    {
+        "id": "876f1464.7b45c8",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 1370,
+        "y": 1380,
+        "wires": [
+            [
+                "f3192b3f.6d25e8"
+            ]
+        ]
+    },
+    {
+        "id": "f3192b3f.6d25e8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Avg Estrés condición",
+        "func": "var avg  = msg.payload[0].media;\nvar terapia = \"fase2\";\nflow.set('terapia',terapia);\nmsg.avg = avg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1540,
+        "y": 1380,
+        "wires": [
+            [
+                "1a55fda7.5870b2"
+            ]
+        ]
+    },
+    {
+        "id": "1a55fda7.5870b2",
+        "type": "switch",
+        "z": "15d07d93.69adea",
+        "name": "Estrés umbral ",
+        "property": "avg",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "90",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "90",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1760,
+        "y": 1260,
+        "wires": [
+            [
+                "8cf96c7d.483c7"
+            ],
+            [
+                "893c9a80.152e78",
+                "8e1c189b.74b528"
+            ]
+        ]
+    },
+    {
+        "id": "c880438c.59e03",
+        "type": "cast-to-client",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "es",
+        "ip": "192.168.1.46",
+        "port": "8009",
+        "volume": "25",
+        "x": 2190,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "893c9a80.152e78",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "Su nivel de estrés se encuentra por debajo del umbral, por lo tanto no es necesario aplicar terapia",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "language",
+                "pt": "msg",
+                "to": "ES-es",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 1380,
+        "wires": [
+            [
+                "c880438c.59e03"
+            ]
+        ]
+    },
+    {
+        "id": "8cf96c7d.483c7",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "message",
+                "pt": "msg",
+                "to": "Su nivel de estrés se encuentra por encima del umbral establecido, se procederá a aplicar la terapia",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "language",
+                "pt": "msg",
+                "to": "ES-es",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 1140,
+        "wires": [
+            [
+                "47172802.de59a8"
+            ]
+        ]
+    },
+    {
+        "id": "47172802.de59a8",
+        "type": "cast-to-client",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "url": "",
+        "contentType": "",
+        "message": "",
+        "language": "es",
+        "ip": "192.168.1.46",
+        "port": "8009",
+        "volume": "25",
+        "x": 2190,
+        "y": 1140,
+        "wires": [
+            [
+                "f9f8fec4.f4b378"
+            ]
+        ]
+    },
+    {
+        "id": "f9f8fec4.f4b378",
+        "type": "delay",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "8",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 2380,
+        "y": 1140,
+        "wires": [
+            [
+                "62727152.09eb38"
+            ]
+        ]
+    },
+    {
+        "id": "b3c63d6c.aaee38",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 2730,
+        "y": 1140,
+        "wires": [
+            [
+                "314f1cc4.1cd3e4"
+            ]
+        ]
+    },
+    {
+        "id": "9ab9c000.f28368",
+        "type": "delay",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 3280,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c4028d1.b9e5f8",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Si desea realizar una nueva terapia por favor presionar el botón \"Reiniciar Terapia\"",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 1700,
+        "wires": [
+            [
+                "7cc20059.d30c48"
+            ]
+        ]
+    },
+    {
+        "id": "91456551.8aeb08",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Cantidad M",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_genero`) as M FROM `paciente` WHERE `paciente_genero`='M'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 2120,
+        "wires": [
+            [
+                "bb4bfa42.a745e"
+            ]
+        ]
+    },
+    {
+        "id": "bb4bfa42.a745e",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2120,
+        "wires": [
+            [
+                "62351bbf.54686c"
+            ]
+        ]
+    },
+    {
+        "id": "93088202.eae4c8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Label Pie Chart Género",
+        "func": "var m = {};\nm.labels = ['Masculino', 'Femenino', 'Otro'];\nm.data = [[flow.get('M') || 0,flow.get('F') || 0,flow.get('O') || 0]]\n//m.data = [[28, 48, 40, 19, 86, 27, 90]];\nm.series = ['Series A'];\nreturn {payload:[m],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 2680,
+        "wires": [
+            [
+                "2648cddb.da2f9a"
+            ]
+        ]
+    },
+    {
+        "id": "b9e87496.70bb88",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "func": "var m = {};\nm.labels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];\nm.data = [[28, 48, 40, 19, 86, 27, 90]];\nm.series = ['Series A'];\nreturn {payload:[m],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 3060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2648cddb.da2f9a",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "Género",
+        "group": "160ff887.599e8f",
+        "order": 7,
+        "width": 8,
+        "height": 7,
+        "label": "Género",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 2680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7e23765.f320c8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Cantidad F",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_genero`) as F FROM `paciente` WHERE `paciente_genero`='F'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 2180,
+        "wires": [
+            [
+                "3843c3df.ddf47c"
+            ]
+        ]
+    },
+    {
+        "id": "3843c3df.ddf47c",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2180,
+        "wires": [
+            [
+                "c1255232.299c68"
+            ]
+        ]
+    },
+    {
+        "id": "2f5ce6ca.d1763a",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Cantidad O",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_genero`) as O FROM `paciente` WHERE `paciente_genero`='O'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 2240,
+        "wires": [
+            [
+                "e69197ef.c72198"
+            ]
+        ]
+    },
+    {
+        "id": "e69197ef.c72198",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2240,
+        "wires": [
+            [
+                "4e2ef1c.f0b689"
+            ]
+        ]
+    },
+    {
+        "id": "62351bbf.54686c",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR M",
+        "func": "var M = msg.payload[0].M;\nflow.set('M',M);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 2120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1255232.299c68",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR F",
+        "func": "var F = msg.payload[0].F;\nflow.set('F',F);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 810,
+        "y": 2180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4e2ef1c.f0b689",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR M",
+        "func": "var O = msg.payload[0].O;\nflow.set('O',O);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 2240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e330d2d.7a7fd4",
+        "type": "inject",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "topic": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "x": 1130,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c94cd4df.5fe21",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Variable Edad >25",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_edad`) as edadalta FROM `paciente` WHERE `paciente_edad` > 25\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 2300,
+        "wires": [
+            [
+                "465f1080.afaaf"
+            ]
+        ]
+    },
+    {
+        "id": "465f1080.afaaf",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2300,
+        "wires": [
+            [
+                "c6d5fdb.c6652"
+            ]
+        ]
+    },
+    {
+        "id": "c6d5fdb.c6652",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR EDAD >25",
+        "func": "var edadalta = msg.payload[0].edadalta;\nflow.set('edadalta',edadalta);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 2300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8582d787.29ee",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Label Pie Chart Edad",
+        "func": "var m = {};\nvar labels = [];\nm.labels = ['Mayor a 25','Entre 20 y 25','Menor a 20']\nm.data = [[flow.get('edadalta') || 0,flow.get('edadmedia') || 0,flow.get('edadbaja') || 0]]\nm.series = ['Series A'];\nreturn {payload:[m],topic:msg.topic};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 2720,
+        "wires": [
+            [
+                "ae965a4e.846488"
+            ]
+        ]
+    },
+    {
+        "id": "ae965a4e.846488",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "Edad",
+        "group": "160ff887.599e8f",
+        "order": 8,
+        "width": 8,
+        "height": 7,
+        "label": "Edad",
+        "chartType": "pie",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": "30",
+        "useOneColor": false,
+        "colors": [
+            "#99ffb3",
+            "#aec7e8",
+            "#ff0080",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 690,
+        "y": 2720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "68da6cca.ea1ea4",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Variable Edad entre 20 a 25",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_edad`) as edadmedia FROM `paciente` WHERE `paciente_edad` BETWEEN 20 AND 25\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 2360,
+        "wires": [
+            [
+                "d5d7b7ca.a8eb08"
+            ]
+        ]
+    },
+    {
+        "id": "d5d7b7ca.a8eb08",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2360,
+        "wires": [
+            [
+                "d12d59b7.a188d8"
+            ]
+        ]
+    },
+    {
+        "id": "d12d59b7.a188d8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR EDAD >25",
+        "func": "var edadmedia = msg.payload[0].edadmedia;\nflow.set('edadmedia',edadmedia);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 2360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d99e27e5.63ca5",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Variable Edad >25",
+        "func": "msg.topic=\"SELECT COUNT(`paciente_edad`) as edadbaja FROM `paciente` WHERE `paciente_edad` <20\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 2420,
+        "wires": [
+            [
+                "bca2c5ab.d8429"
+            ]
+        ]
+    },
+    {
+        "id": "bca2c5ab.d8429",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2420,
+        "wires": [
+            [
+                "f92ce127.77b548"
+            ]
+        ]
+    },
+    {
+        "id": "f92ce127.77b548",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR EDAD >25",
+        "func": "var edadbaja = msg.payload[0].edadbaja;\nflow.set('edadbaja',edadbaja);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 840,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ae1073c.7d24b8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR idmusica",
+        "func": "msg.topic = msg.payload[0].musica_url;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1360,
+        "y": 1220,
+        "wires": [
+            [
+                "b1502cd2.e7d008"
+            ]
+        ]
+    },
+    {
+        "id": "fed6b9b4.186a68",
+        "type": "ui_dropdown",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "label": "Pacientes",
+        "tooltip": "Seleccione el paciente a recibir terapia, si no es elegido un paciente será uso del perfil invitado ",
+        "place": "Seleccione el paciente a recibir terapia",
+        "group": "dede2693.22435",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 840,
+        "y": 1200,
+        "wires": [
+            [
+                "94a7f14e.321538"
+            ]
+        ]
+    },
+    {
+        "id": "d645bbd9.60d74",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes GET",
+        "func": "msg.topic=\"SELECT * FROM paciente\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 1200,
+        "wires": [
+            [
+                "b3540f49.8eed1"
+            ]
+        ]
+    },
+    {
+        "id": "b3540f49.8eed1",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 450,
+        "y": 1200,
+        "wires": [
+            [
+                "ed38a6cf.f1dde"
+            ]
+        ]
+    },
+    {
+        "id": "ed38a6cf.f1dde",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Poblate dropdown",
+        "func": "msg.options = msg.payload.map(function(el) {\n    var result = {};\n    result[el.paciente_nombre] = el.paciente_id;\n    return result;\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 1200,
+        "wires": [
+            [
+                "fed6b9b4.186a68"
+            ]
+        ]
+    },
+    {
+        "id": "92b7f9e7.b21b6",
+        "type": "ui_dropdown",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "label": "Música",
+        "tooltip": "Seleccione la pista musical a ser emitida",
+        "place": "Seleccione la pista musical para aplicar terapia",
+        "group": "dede2693.22435",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 840,
+        "y": 1260,
+        "wires": [
+            [
+                "adbbcd60.006c2",
+                "cabc46c1.148be"
+            ]
+        ]
+    },
+    {
+        "id": "fe00a245.57f6d8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Música GET",
+        "func": "msg.topic=\"SELECT * FROM musica\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 1260,
+        "wires": [
+            [
+                "7ae5e172.d7ac18"
+            ]
+        ]
+    },
+    {
+        "id": "7ae5e172.d7ac18",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 450,
+        "y": 1260,
+        "wires": [
+            [
+                "5df3f953.441e2"
+            ]
+        ]
+    },
+    {
+        "id": "5df3f953.441e2",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Poblate dropdown",
+        "func": "msg.options = msg.payload.map(function(el) {\n    var result = {};\n    result[el.musica_nombre] = el.musica_id;\n    return result;\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 1260,
+        "wires": [
+            [
+                "92b7f9e7.b21b6"
+            ]
+        ]
+    },
+    {
+        "id": "adbbcd60.006c2",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Switch condition",
+        "func": "if(msg.payload>=1)\n{\n    msg.enabled = true;\n    return msg;\n}\nelse\n{\n    msg.enabled = false;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1040,
+        "y": 1260,
+        "wires": [
+            [
+                "16e6f4e5.437143"
+            ]
+        ]
+    },
+    {
+        "id": "e89ede01.1c7238",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "reset",
+                "pt": "msg",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 1620,
+        "wires": [
+            [
+                "1d11f0cd.ce1437"
+            ]
+        ]
+    },
+    {
+        "id": "ea7a41ee.1e248",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Si el nivel de estrés esta por encima del umbral establecido apliquese la terapia",
+        "info": "",
+        "x": 2180,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "212322f.98a1dde",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Si el nivel de estrés esta por debajo entonces detengase la terapia ",
+        "info": "",
+        "x": 2140,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "2bbb6e46.ec763a",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "La primera fase1 es iniciada, es ingresado todos los datos pertenecientes a las ondas y al nivel de estrés a la base de datos",
+        "info": "",
+        "x": 1340,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "5b865494.aef25c",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "La segunda fase2 es iniciada se verifica si la terapia es necesaria",
+        "info": "",
+        "x": 1260,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "10091c25.ce5aec",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "En el caso de detener la terapia, los valores se enceran",
+        "info": "",
+        "x": 1010,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "8e1c189b.74b528",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "enabled",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "FALSO",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1980,
+        "y": 1440,
+        "wires": [
+            [
+                "16e6f4e5.437143"
+            ]
+        ]
+    },
+    {
+        "id": "8d4a553c.532b98",
+        "type": "ui_ui_control",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 1240,
+        "wires": [
+            [
+                "d645bbd9.60d74",
+                "fe00a245.57f6d8"
+            ]
+        ]
+    },
+    {
+        "id": "cabc46c1.148be",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica query",
+        "func": "if(typeof msg.payload === 'object')\n{\n    return msg;\n}\nelse\n{\n    var musicaselectid = msg.payload;\n    flow.set('musicaselectid',musicaselectid);\n    msg.topic=\"SELECT musica_url FROM musica WHERE musica_id=\"+msg.payload;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1040,
+        "y": 1220,
+        "wires": [
+            [
+                "1ad1e9cd.938c8e"
+            ]
+        ]
+    },
+    {
+        "id": "1ad1e9cd.938c8e",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 1190,
+        "y": 1220,
+        "wires": [
+            [
+                "8ae1073c.7d24b8"
+            ]
+        ]
+    },
+    {
+        "id": "b1502cd2.e7d008",
+        "type": "ui_template",
+        "z": "15d07d93.69adea",
+        "group": "dede2693.22435",
+        "name": "",
+        "order": 26,
+        "width": 0,
+        "height": 0,
+        "format": "<html>\n    <head>\n        <style>\n            audio { display:none;}\n        </style>\n    </head>\n    <body>\n                        <audio id=\"audio\" preload=\"metadata\" controls>\n        <source id=\"audioSource\" src=\"\"/>\n    Your browser does not support the audio element.\n    </audio>\n<script>\n    (function(scope) {\n       // var theScope = scope;\n        scope.$watch('msg.payload', function(data) {\n                  var audio = document.getElementById('audio');\n                  var source = document.getElementById('audioSource');\n                  source.src = data[0].musica_url;\n                  scope.send({url: audio.duration});\n                  audio.addEventListener('loadedmetadata', function() {\n                      \n                      //theScope.send({url: audio.duration});\n                        //console.log(\"Playing \" + audio.src + \", for: \" + audio.duration + \"seconds.\");\n                       // audio.play(); \n                    //    audio.stop();\n                    });\n                  audio.load(); //call this to just preload the audio without playing\n        });\n    })(scope);\n</script>\n</body>\n</html>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 1540,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cbe950f9.9c48c",
+        "type": "ui_ui_control",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 2300,
+        "wires": [
+            [
+                "91456551.8aeb08",
+                "b7e23765.f320c8",
+                "2f5ce6ca.d1763a",
+                "c94cd4df.5fe21",
+                "68da6cca.ea1ea4",
+                "d99e27e5.63ca5",
+                "bf7ffecb.50c578",
+                "43e16b1a.8cee54"
+            ]
+        ]
+    },
+    {
+        "id": "a4bd90f8.d2f8f",
+        "type": "delay",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 860,
+        "y": 1700,
+        "wires": [
+            [
+                "2c4028d1.b9e5f8"
+            ]
+        ]
+    },
+    {
+        "id": "667696e8.2d3038",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Sección 5(Reportes): Generación de reportes",
+        "info": "",
+        "x": 190,
+        "y": 2080,
+        "wires": []
+    },
+    {
+        "id": "4d4b16ad.721b18",
+        "type": "ui_text",
+        "z": "15d07d93.69adea",
+        "group": "dede2693.22435",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Zona Monitoreo",
+        "format": "Indicaciones: Antes de comenzar la terapia es necesario seleccionar, el paciente y la pista musical que va a ser aplicada durante la terapia, la fase1 de la terapia describe el nivel de estrés medido ante los estresores o la actividad normal del paciente, la fase2 describe el nivel de estrés aplicando músico-terapia como terapia de neuroretroalimentación",
+        "layout": "col-center",
+        "x": 110,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "7c172357.4fe1bc",
+        "type": "ui_heat_map",
+        "z": "15d07d93.69adea",
+        "group": "dede2693.22435",
+        "order": 14,
+        "width": 9,
+        "height": 6,
+        "name": "",
+        "rows": "7",
+        "columns": "7",
+        "minMax": false,
+        "minimumValue": 0,
+        "maximumValue": 0,
+        "backgroundType": "image",
+        "backgroundColor": "#ff80c0",
+        "radius": 40,
+        "opacity": "0",
+        "blur": 0.85,
+        "showValues": false,
+        "gridType": "keys",
+        "valuesDecimals": 0,
+        "showLegend": false,
+        "legendType": "none",
+        "legendDecimals": 0,
+        "legendCount": 2,
+        "x": 560,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "641e81f.795cc",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Generate football pattern",
+        "func": "// Generate some random data\n// See https://www.patrick-wied.at/static/heatmapjs/example-minimal-config.html\nmsg.payload = [];\n\nconst values = [4, 11, 18, 25, 32, 39, 46];\n\nvar index = context.get('value_index') || 0;\n\nif (index >= 8) {\n    index = 0;\n}\n\nfor (var i = 0; i < 49; i++) {\n    if ( i === values[index]) {\n        msg.payload.push(100);\n    }\n    else {\n        msg.payload.push(0);\n    }\n}\n\nindex += 1;\ncontext.set('value_index', index);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 1640,
+        "wires": [
+            [
+                "7c172357.4fe1bc"
+            ]
+        ]
+    },
+    {
+        "id": "df4bc9df.b5efd",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "image",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 1680,
+        "wires": [
+            [
+                "7c172357.4fe1bc"
+            ]
+        ]
+    },
+    {
+        "id": "c7f137e8.e073d",
+        "type": "base64",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "action": "",
+        "property": "payload",
+        "x": 420,
+        "y": 1680,
+        "wires": [
+            [
+                "df4bc9df.b5efd"
+            ]
+        ]
+    },
+    {
+        "id": "d682bae2.830fb",
+        "type": "http request",
+        "z": "15d07d93.69adea",
+        "name": "Download image",
+        "method": "GET",
+        "ret": "bin",
+        "paytoqs": false,
+        "url": "https://i.imgur.com/Ryy3LNk.png",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 250,
+        "y": 1680,
+        "wires": [
+            [
+                "c7f137e8.e073d"
+            ]
+        ]
+    },
+    {
+        "id": "9bfed36.88b52b",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "dede2693.22435",
+        "order": 7,
+        "width": 10,
+        "height": 6,
+        "label": "Alfa",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Frecuencia: 8-12Hz Origen: Coordinación mental, calma, estado en reposo del cerebro.",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a3b4264f.6836d8",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "dede2693.22435",
+        "order": 8,
+        "width": 9,
+        "height": 6,
+        "label": "Beta Lo",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": " Frecuencia: 12-16Hz Origen: Estado consiente, concentración.",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 1860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2748c1a.277e1",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "dede2693.22435",
+        "order": 11,
+        "width": 9,
+        "height": 6,
+        "label": "Theta",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Frecuencia: 4-8Hz Origen: Estado somnoliento o en profunda meditación, etapa de sueño",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7b126527.e5f7fc",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "dede2693.22435",
+        "order": 10,
+        "width": 10,
+        "height": 6,
+        "label": "Gamma",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Frecuencia: 25-45Hz Origen: actividad sensorial del cerebro, captación de información",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 1940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad9b7365.b2c478",
+        "type": "ui_button",
+        "z": "15d07d93.69adea",
+        "name": "Limpiar",
+        "group": "dede2693.22435",
+        "order": 6,
+        "width": 5,
+        "height": 2,
+        "passthru": false,
+        "label": "Reiniciar terapia",
+        "tooltip": "Botón que limpia las gráficas y re instancia los datos",
+        "color": "white",
+        "bgcolor": "#454444",
+        "icon": "",
+        "payload": "[]",
+        "payloadType": "json",
+        "topic": "",
+        "x": 80,
+        "y": 1900,
+        "wires": [
+            [
+                "9bfed36.88b52b",
+                "a3b4264f.6836d8",
+                "c2748c1a.277e1",
+                "7b126527.e5f7fc",
+                "1629c773.df9fc1",
+                "fcea3eb7.37b0b"
+            ]
+        ]
+    },
+    {
+        "id": "87edf9c9.7544a8",
+        "type": "ui_lineargauge",
+        "z": "15d07d93.69adea",
+        "group": "dede2693.22435",
+        "order": 12,
+        "width": 9,
+        "height": 6,
+        "name": "Estrés",
+        "colorLowArea": "#99ff99",
+        "colorMidArea": "#ffffc0",
+        "colorHighArea": "#ff8080",
+        "unit": "(0-100)",
+        "x": 410,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "8bd86984.1e247",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 240,
+        "y": 1720,
+        "wires": [
+            [
+                "87edf9c9.7544a8"
+            ]
+        ]
+    },
+    {
+        "id": "e8d49b58.10ae9",
+        "type": "inject",
+        "z": "15d07d93.69adea",
+        "name": "Show heatmap",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 120,
+        "y": 1780,
+        "wires": [
+            [
+                "9ad100af.2f0248"
+            ]
+        ]
+    },
+    {
+        "id": "9ad100af.2f0248",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Random Number",
+        "func": "rnd= Math.round(Math.random()*100);\nmsg.payload = rnd;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 1780,
+        "wires": [
+            [
+                "87edf9c9.7544a8"
+            ]
+        ]
+    },
+    {
+        "id": "1629c773.df9fc1",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "temporal TRUNCATE",
+        "func": "msg.topic=\"TRUNCATE ondas\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 2020,
+        "wires": [
+            [
+                "54c219af.3bfe3"
+            ]
+        ]
+    },
+    {
+        "id": "54c219af.3bfe3",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 470,
+        "y": 2020,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fcea3eb7.37b0b",
+        "type": "ui_chart",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "group": "dede2693.22435",
+        "order": 9,
+        "width": 9,
+        "height": 6,
+        "label": "Beta Hi",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": " Frecuencia: 16-25Hz Origen: Ansiedad, activad rápida, estado de alerta, pensamiento profundo",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "1",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 260,
+        "y": 1820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ceb1dfd1.1bc45",
+        "type": "ui_ui_control",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "events": "change",
+        "x": 80,
+        "y": 1640,
+        "wires": [
+            [
+                "641e81f.795cc",
+                "d682bae2.830fb",
+                "8bd86984.1e247"
+            ]
+        ]
+    },
+    {
+        "id": "b72a2123.e0f98",
+        "type": "ui_dropdown",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "label": "Paciente",
+        "tooltip": "Seleccione el paciente al cual quiere obtener el reporte",
+        "place": "Seleccione el paciente a generar el reporte",
+        "group": "160ff887.599e8f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 1020,
+        "y": 2480,
+        "wires": [
+            [
+                "da0d31e1.5f458"
+            ]
+        ]
+    },
+    {
+        "id": "d0bb3b54.9205a8",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Poblate dropdown",
+        "func": "msg.options = msg.payload.map(function(el) {\n    var result = {};\n    result[el.paciente_nombre] = el.paciente_id;\n    return result;\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 2480,
+        "wires": [
+            [
+                "b72a2123.e0f98"
+            ]
+        ]
+    },
+    {
+        "id": "a6cf3432.0999c8",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2480,
+        "wires": [
+            [
+                "d0bb3b54.9205a8"
+            ]
+        ]
+    },
+    {
+        "id": "bf7ffecb.50c578",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes GET",
+        "func": "msg.topic=\"SELECT * FROM paciente\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 420,
+        "y": 2480,
+        "wires": [
+            [
+                "a6cf3432.0999c8"
+            ]
+        ]
+    },
+    {
+        "id": "1ea72fd.d99c1d",
+        "type": "ui_lineargauge",
+        "z": "15d07d93.69adea",
+        "group": "160ff887.599e8f",
+        "order": 11,
+        "width": 3,
+        "height": 7,
+        "name": "Nivel de estrés",
+        "colorLowArea": "#99ff99",
+        "colorMidArea": "#ffffc0",
+        "colorHighArea": "#ff8080",
+        "unit": "(0-100)",
+        "x": 1100,
+        "y": 2760,
+        "wires": []
+    },
+    {
+        "id": "da0d31e1.5f458",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR pacienteid_reporte",
+        "func": "var pacientereporte = msg.payload;\nflow.set('reportepaciente',pacientereporte);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1230,
+        "y": 2480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "57507446.166bbc",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "pacientes GET",
+        "func": "pacienteid=flow.get('reportepaciente') || 0;\nmsg.topic=\"SELECT AVG(ondas_estres) as media FROM `ondas` WHERE terapia LIKE 'fase1' AND paciente_id=\"+pacienteid;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 2760,
+        "wires": [
+            [
+                "4e0bc813.bae25"
+            ]
+        ]
+    },
+    {
+        "id": "4e0bc813.bae25",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 590,
+        "y": 2760,
+        "wires": [
+            [
+                "4feb9383.21b3bc"
+            ]
+        ]
+    },
+    {
+        "id": "94a7f14e.321538",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "paciente query",
+        "func": "var pacienteid = msg.payload;\nflow.set('pacienteid',pacienteid);\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1040,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4feb9383.21b3bc",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].media",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 740,
+        "y": 2760,
+        "wires": [
+            [
+                "e2c4f93c.38447"
+            ]
+        ]
+    },
+    {
+        "id": "f2976347.5523e",
+        "type": "inject",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "x": 1290,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2c4f93c.38447",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Check if null",
+        "func": "if(msg.payload===null)\n{\n    msg.payload=0;\n    return msg;\n}\nelse\n{\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 910,
+        "y": 2760,
+        "wires": [
+            [
+                "1ea72fd.d99c1d"
+            ]
+        ]
+    },
+    {
+        "id": "8e5265da.6fad2",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "temporal POST",
+        "func": "paciente = flow.get('pacienteid') || 0\nmusica= flow.get('musicaselectid') || 0\nrnd= Math.round(Math.random()*100);\n//estres = flow.get('estres') || 0\nestres = rnd;\n//estres = 2\nalfa=rnd;\nbeta=rnd;\nteta=rnd;\ngama=rnd;\nterapia= flow.get('terapia') || 0\ntimestamp= flow.get('timestamps') || 0\nmsg.topic = \"INSERT INTO temporal (`paciente_id`,`musica_id`,`ondas_estres`,`ondas_alfa`,`ondas_beta`,`ondas_teta`,`ondas_gamma`,`terapia`,`timestamp`) VALUES ('\"+ paciente +\"','\"+ musica +\"',\"+ estres +\",'\"+ alfa +\"','\"+ beta +\"','\"+ teta +\"','\"+ gama +\"','\"+ terapia +\"','\"+ timestamp +\"');\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1680,
+        "y": 1500,
+        "wires": [
+            [
+                "10d87472.b3ca94"
+            ]
+        ]
+    },
+    {
+        "id": "10d87472.b3ca94",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 1830,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b36d4739.016578",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Switch condition",
+        "func": "if(msg.payload>=1)\n{\n    msg.enabled = true;\n    return msg;\n}\nelse\n{\n    msg.enabled = false;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1180,
+        "y": 2580,
+        "wires": [
+            [
+                "3bee96aa.6b256a"
+            ]
+        ]
+    },
+    {
+        "id": "58a3d204.f46064",
+        "type": "ui_text",
+        "z": "15d07d93.69adea",
+        "group": "160ff887.599e8f",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Datos generales",
+        "format": "",
+        "layout": "row-left",
+        "x": 190,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "43e16b1a.8cee54",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Música GET",
+        "func": "msg.topic=\"SELECT * FROM musica\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 2580,
+        "wires": [
+            [
+                "e9d05fa1.5648e8"
+            ]
+        ]
+    },
+    {
+        "id": "e9d05fa1.5648e8",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 650,
+        "y": 2580,
+        "wires": [
+            [
+                "e8662528.4e9db"
+            ]
+        ]
+    },
+    {
+        "id": "e8662528.4e9db",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Poblate dropdown",
+        "func": "msg.options = msg.payload.map(function(el) {\n    var result = {};\n    result[el.musica_nombre] = el.musica_id;\n    return result;\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 2580,
+        "wires": [
+            [
+                "eba2e81.b8fd398"
+            ]
+        ]
+    },
+    {
+        "id": "eba2e81.b8fd398",
+        "type": "ui_dropdown",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "label": "Música",
+        "tooltip": "Seleccione la pista musical a ser emitida",
+        "place": "Seleccione la pista musical para aplicar terapia",
+        "group": "160ff887.599e8f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [],
+        "payload": "",
+        "topic": "",
+        "x": 1020,
+        "y": 2580,
+        "wires": [
+            [
+                "b36d4739.016578",
+                "31842dde.6480c2"
+            ]
+        ]
+    },
+    {
+        "id": "31842dde.6480c2",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "POST VAR musica_reporte",
+        "func": "var musicareporte = msg.payload;\nflow.set('musicareporte',musicareporte);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1220,
+        "y": 2540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "642c6bca.f62f4c",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "musica GET",
+        "func": "msg.topic=\"SELECT musica_nombre,MAX(musica_eficiencia) as maxeficiencia from musica\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 2820,
+        "wires": [
+            [
+                "8de79596.bf54f"
+            ]
+        ]
+    },
+    {
+        "id": "8de79596.bf54f",
+        "type": "mysql",
+        "z": "15d07d93.69adea",
+        "mydb": "d0d94d9b.fb971",
+        "name": "",
+        "x": 590,
+        "y": 2820,
+        "wires": [
+            [
+                "4ac99e23.27b32"
+            ]
+        ]
+    },
+    {
+        "id": "4ac99e23.27b32",
+        "type": "function",
+        "z": "15d07d93.69adea",
+        "name": "Check if null",
+        "func": "if(msg.payload===null)\n{\n    msg.payload=0;\n    return msg;\n}\nelse\n{\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 730,
+        "y": 2820,
+        "wires": [
+            [
+                "3131cf2f.1a70b8",
+                "d646cc3b.70bc28"
+            ]
+        ]
+    },
+    {
+        "id": "892e01d1.904a18",
+        "type": "ui_lineargauge",
+        "z": "15d07d93.69adea",
+        "group": "160ff887.599e8f",
+        "order": 10,
+        "width": 11,
+        "height": 6,
+        "name": "Eficiencia",
+        "colorLowArea": "#c5fac8",
+        "colorMidArea": "#ff8080",
+        "colorHighArea": "#3005f8",
+        "unit": "(1-5)",
+        "x": 1100,
+        "y": 2820,
+        "wires": []
+    },
+    {
+        "id": "3131cf2f.1a70b8",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].maxeficiencia",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "highlimit",
+                "pt": "msg",
+                "to": "4.3",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "setpoint",
+                "pt": "msg",
+                "to": "3",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "lowlimit",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 2820,
+        "wires": [
+            [
+                "892e01d1.904a18"
+            ]
+        ]
+    },
+    {
+        "id": "61b1e7cf.aba5d",
+        "type": "ui_text",
+        "z": "15d07d93.69adea",
+        "group": "160ff887.599e8f",
+        "order": 9,
+        "width": 11,
+        "height": 1,
+        "name": "",
+        "label": "Canción de mayor eficiencia al reducir estrés:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 1260,
+        "y": 2880,
+        "wires": []
+    },
+    {
+        "id": "d646cc3b.70bc28",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload[0].musica_nombre",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 2880,
+        "wires": [
+            [
+                "61b1e7cf.aba5d"
+            ]
+        ]
+    },
+    {
+        "id": "5a8cfd6b.9ec8f4",
+        "type": "ui_ui_control",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "events": "change",
+        "x": 880,
+        "y": 2640,
+        "wires": [
+            [
+                "a41c3a97.5acad8"
+            ]
+        ]
+    },
+    {
+        "id": "a41c3a97.5acad8",
+        "type": "change",
+        "z": "15d07d93.69adea",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1080,
+        "y": 2700,
+        "wires": [
+            [
+                "2648cddb.da2f9a",
+                "ae965a4e.846488",
+                "1ea72fd.d99c1d",
+                "892e01d1.904a18",
+                "61b1e7cf.aba5d"
+            ]
+        ]
+    },
+    {
+        "id": "41859d7a.9fe944",
+        "type": "comment",
+        "z": "15d07d93.69adea",
+        "name": "Limpia los gráficos al cambiar de tab ",
+        "info": "",
+        "x": 1140,
+        "y": 2660,
+        "wires": []
+    },
+    {
+        "id": "d0d94d9b.fb971",
+        "type": "MySQLdatabase",
+        "z": "",
+        "host": "localhost",
+        "port": "3306",
+        "db": "emotiv",
+        "tz": ""
+    },
+    {
+        "id": "839181ae.90b5f",
+        "type": "ui_group",
+        "z": "",
+        "name": "Navbar",
+        "tab": "54188788.edd588",
+        "order": 1,
+        "disp": false,
+        "width": "27",
+        "collapse": false
+    },
+    {
+        "id": "dede2693.22435",
+        "type": "ui_group",
+        "z": "",
+        "name": "Ondas cerebrales",
+        "tab": "839a23cd.b89c1",
+        "order": 1,
+        "disp": false,
+        "width": 28,
+        "collapse": false
+    },
+    {
+        "id": "c1ad6204.b5c8a",
+        "type": "ui_group",
+        "z": "",
+        "name": "Usuario",
+        "tab": "",
+        "disp": false,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "160ff887.599e8f",
+        "type": "ui_group",
+        "z": "",
+        "name": "Reportes",
+        "tab": "681a14b8.3e289c",
+        "order": 1,
+        "disp": false,
+        "width": "27",
+        "collapse": false
+    },
+    {
+        "id": "54188788.edd588",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Inicio",
+        "icon": "home",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "839a23cd.b89c1",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Monitoreo",
+        "icon": "fa-eye",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "681a14b8.3e289c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Reportes",
+        "icon": "description",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]
